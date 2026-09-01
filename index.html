@@ -1,0 +1,244 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="theme-color" content="#f7f6f3"><title>Coach — 10 km sub-37</title><style>:root{color-scheme:light;--bg:#f7f6f3;--card:#fff;--ink:#1a1a1a;--dim:#6b6b6b;--line:#e4e2dd;--run:#c8102e;--cal:#7b4bc7;--gym:#1d7a5f;--warm:#e8a33d;--work:#c8102e;--rec:#7fa8c9;--ok:#1d7a5f}*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.45;padding-bottom:90px}.wrap{max-width:720px;margin:0 auto;padding:0 14px}header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 0 8px}.nav{display:flex;align-items:center;gap:8px}.nav button{border:1px solid var(--line);background:var(--card);border-radius:10px;font-size:20px;width:42px;height:42px;flex:0 0 42px;cursor:pointer;color:var(--ink)}.nav .day{flex:1;text-align:center}.nav .day b{display:block;font-size:16px;text-transform:capitalize}.nav .day span{display:block;font-size:12px;color:var(--dim)}.today{font-size:12px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 12px;cursor:pointer;color:var(--ink);white-space:nowrap}.tabs{display:flex;gap:6px;margin-top:9px;overflow-x:auto;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}.tab{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 13px;font-size:13px;white-space:nowrap;cursor:pointer;color:var(--dim)}.tab.on{color:#fff;border-color:transparent}.tab.on.run{background:var(--run)}.tab.on.cal{background:var(--cal)}.tab.on.gym{background:var(--gym)}h1{font-size:21px;margin:16px 0 4px;line-height:1.25}.meta{font-size:13px;color:var(--dim);margin-bottom:12px}.intro{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--cal);border-radius:12px;padding:12px 14px;font-size:14.5px;margin-bottom:16px}.intro.run{border-left-color:var(--run)}.intro.gym{border-left-color:var(--gym)}h2{font-size:13px;letter-spacing:.09em;text-transform:uppercase;color:var(--dim);margin:24px 0 9px;font-weight:600}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden}.exo{display:flex;gap:12px;padding:13px}.exo svg{flex:0 0 92px;width:92px;height:76px;background:#faf9f7;border-radius:10px}.exo .txt{flex:1;min-width:0}.exo .n{font-weight:600;font-size:15px;line-height:1.3}.exo .s{font-size:13.5px;color:var(--run);font-weight:600;margin-top:3px}.cal .exo .s{color:var(--cal)}.gym .exo .s{color:var(--gym)}.exo .f{font-size:13px;color:var(--dim);margin-top:5px}.pair{border-bottom:1px dashed var(--line)}.pair:last-of-type{border-bottom:0}.head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 14px;background:#f2f0eb;font-size:13px;font-weight:600}.rounds{display:flex;gap:6px}.rd{width:30px;height:30px;border-radius:8px;border:1.5px solid var(--line);background:#fff;font-size:12px;cursor:pointer;color:var(--dim);padding:0}.rd.done{background:var(--ok);border-color:var(--ok);color:#fff}.tl{display:flex;flex-direction:column;gap:7px}.st{display:flex;align-items:center;gap:11px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 13px}.bar{width:5px;align-self:stretch;border-radius:3px;flex:0 0 5px}.st .t{font-weight:600;font-size:15px}.st .d{font-size:13.5px;color:var(--dim)}.k-wu .bar{background:var(--warm)}.k-work .bar,.k-test .bar{background:var(--work)}.k-cd .bar{background:var(--rec)}.k-ef .bar{background:var(--ok)}.log{display:flex;align-items:center;gap:8px;padding:9px 13px 13px;font-size:13px;color:var(--dim)}.log input{flex:1;min-width:0;border:1px solid var(--line);border-radius:9px;padding:8px 10px;font-size:14px;font-family:inherit;background:#faf9f7;color:var(--ink)}.prev{font-size:12px;color:var(--ok);white-space:nowrap}.foot{font-size:13px;color:var(--dim);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px;margin:18px 0}.timer{position:fixed;left:0;right:0;bottom:0;z-index:30;background:#fff;border-top:1px solid var(--line);padding:9px 14px calc(9px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:9px}.timer .disp{font-variant-numeric:tabular-nums;font-size:26px;font-weight:600;min-width:76px}.timer .disp.run{color:var(--run)}.timer button{border:1px solid var(--line);background:#faf9f7;border-radius:10px;padding:10px 12px;font-size:13px;cursor:pointer;flex:1;color:var(--ink);font-family:inherit}.timer button.stop{background:var(--run);color:#fff;border-color:var(--run)}.weeks{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:10px 0 4px}.wk{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:9px 4px;text-align:center;font-size:12px;cursor:pointer;color:var(--ink)}.wk.on{background:var(--ink);color:#fff;border-color:var(--ink)}.wk small{display:block;color:var(--dim);font-size:10px}.wk.on small{color:#bbb}.empty{text-align:center;color:var(--dim);padding:50px 20px;font-size:15px}.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:999px;background:#f2f0eb;color:var(--dim);margin-left:6px;vertical-align:middle}</style></head><body>
+<header><div class="wrap">
+<div class="nav">
+ <button onclick="go(-1)" aria-label="Jour precedent">&#8249;</button>
+ <div class="day"><b id="dj"></b><span id="dsub"></span></div>
+ <button onclick="go(1)" aria-label="Jour suivant">&#8250;</button>
+ <button class="today" onclick="goToday()">Auj.</button>
+</div>
+<div class="tabs" id="tabs"></div>
+</div></header>
+<div class="wrap" id="app"></div>
+<div class="timer">
+ <div class="disp" id="disp">&mdash;:&mdash;</div>
+ <button id="btog" onclick="togTimer()">Repos 90 s</button>
+ <button onclick="startTimer(30)">30 s</button>
+ <button onclick="startTimer(45)">45 s</button>
+ <button onclick="startTimer(60)">60 s</button>
+</div><script>var GR={t:'l',x1:4,y1:92,x2:126,y2:92};
+var ANIM={
+traction:{p:[{t:'l',x1:35,y1:9,x2:95,y2:9}],
+a:{hd:[65,32],sh:[65,39],el:[65,24],wr:[65,10],pe:[65,62],kn:[62,78],ft:[58,90]},
+b:{hd:[65,17],sh:[65,25],el:[55,26],wr:[65,10],pe:[65,48],kn:[62,64],ft:[58,76]}},
+tractionsup:{p:[{t:'l',x1:35,y1:9,x2:95,y2:9}],
+a:{hd:[65,32],sh:[65,39],el:[65,24],wr:[65,10],pe:[65,62],kn:[62,78],ft:[58,90]},
+b:{hd:[65,18],sh:[65,26],el:[73,28],wr:[65,10],pe:[65,49],kn:[62,65],ft:[58,77]}},
+legraise:{p:[{t:'l',x1:32,y1:9,x2:92,y2:9}],
+a:{hd:[62,30],sh:[62,37],el:[62,23],wr:[62,10],pe:[62,60],kn:[62,76],ft:[62,91]},
+b:{hd:[62,30],sh:[62,37],el:[62,23],wr:[62,10],pe:[62,60],kn:[80,58],ft:[95,45]}},
+pike:{p:[GR],
+a:{hd:[44,60],sh:[50,54],el:[42,72],wr:[35,90],pe:[74,30],kn:[86,60],ft:[97,90]},
+b:{hd:[37,80],sh:[47,68],el:[54,80],wr:[35,90],pe:[74,34],kn:[86,62],ft:[97,90]}},
+hspu:{p:[GR,{t:'l',x1:56,y1:4,x2:56,y2:60}],
+a:{hd:[45,45],sh:[45,54],el:[45,72],wr:[45,90],pe:[45,32],kn:[45,18],ft:[45,6]},
+b:{hd:[45,58],sh:[45,66],el:[54,79],wr:[45,90],pe:[45,45],kn:[45,31],ft:[45,19]}},
+handstand:{p:[GR,{t:'l',x1:56,y1:4,x2:56,y2:60}],
+a:{hd:[45,45],sh:[45,54],el:[45,72],wr:[45,90],pe:[45,32],kn:[45,18],ft:[45,6]},
+b:{hd:[46,44],sh:[46,53],el:[46,71],wr:[45,90],pe:[47,31],kn:[48,17],ft:[48,5]}},
+row:{p:[GR,{t:'l',x1:32,y1:42,x2:70,y2:42}],
+a:{hd:[41,63],sh:[48,65],el:[48,55],wr:[48,43],pe:[76,77],kn:[90,83],ft:[102,90]},
+b:{hd:[43,50],sh:[50,52],el:[56,56],wr:[48,43],pe:[78,68],kn:[91,79],ft:[102,90]}},
+facepull:{p:[GR,{t:'l',x1:32,y1:42,x2:70,y2:42}],
+a:{hd:[41,63],sh:[48,65],el:[48,55],wr:[48,43],pe:[76,77],kn:[90,83],ft:[102,90]},
+b:{hd:[45,47],sh:[52,50],el:[62,44],wr:[48,43],pe:[79,66],kn:[92,78],ft:[102,90]}},
+curl:{p:[GR,{t:'l',x1:34,y1:40,x2:68,y2:40}],
+a:{hd:[43,64],sh:[50,66],el:[50,56],wr:[50,41],pe:[78,79],kn:[92,84],ft:[104,91]},
+b:{hd:[47,49],sh:[54,51],el:[53,56],wr:[50,41],pe:[81,67],kn:[93,79],ft:[104,91]}},
+skull:{p:[GR,{t:'l',x1:34,y1:40,x2:68,y2:40}],
+a:{hd:[45,61],sh:[52,63],el:[51,52],wr:[50,41],pe:[79,76],kn:[93,83],ft:[105,91]},
+b:{hd:[45,52],sh:[52,55],el:[44,45],wr:[50,41],pe:[79,69],kn:[93,79],ft:[105,91]}},
+dips:{p:[{t:'l',x1:38,y1:60,x2:66,y2:60}],
+a:{hd:[52,26],sh:[52,34],el:[52,47],wr:[52,60],pe:[52,60],kn:[63,72],ft:[72,80]},
+b:{hd:[52,41],sh:[52,49],el:[43,55],wr:[52,60],pe:[52,75],kn:[63,86],ft:[72,93]}},
+pompe:{p:[GR],
+a:{hd:[31,58],sh:[39,62],el:[39,76],wr:[39,90],pe:[71,70],kn:[87,80],ft:[101,90]},
+b:{hd:[29,74],sh:[37,78],el:[47,84],wr:[39,90],pe:[71,80],kn:[87,86],ft:[101,90]}},
+archer:{p:[GR],
+a:{hd:[32,60],sh:[40,64],el:[40,77],wr:[40,90],el2:[62,78],wr2:[84,90],pe:[70,72],kn:[86,81],ft:[100,90]},
+b:{hd:[30,77],sh:[38,80],el:[48,86],wr:[40,90],el2:[64,85],wr2:[84,90],pe:[70,83],kn:[86,87],ft:[100,90]}},
+bench:{p:[GR,{t:'r',x:22,y:64,w:64,h:7}],
+a:{hd:[28,58],sh:[38,60],el:[42,72],wr:[46,66],pe:[72,62],kn:[86,74],ft:[96,90]},
+b:{hd:[28,58],sh:[38,60],el:[42,48],wr:[46,38],pe:[72,62],kn:[86,74],ft:[96,90]}},
+hipthrust:{p:[GR,{t:'r',x:8,y:66,w:22,h:9}],
+a:{hd:[20,61],sh:[29,63],el:[23,71],wr:[16,75],pe:[59,82],kn:[79,72],ft:[89,91]},
+b:{hd:[20,57],sh:[29,59],el:[23,67],wr:[16,71],pe:[59,60],kn:[79,58],ft:[89,91]}},
+pont:{p:[GR],
+a:{hd:[24,80],sh:[33,80],el:[27,88],wr:[19,90],pe:[62,84],kn:[82,72],ft:[94,91]},
+b:{hd:[24,80],sh:[33,80],el:[27,88],wr:[19,90],pe:[62,64],kn:[82,61],ft:[94,91]}},
+hollow:{p:[GR],
+a:{hd:[48,73],sh:[57,75],el:[45,69],wr:[33,65],pe:[77,77],kn:[91,69],ft:[103,62]},
+b:{hd:[50,68],sh:[59,70],el:[47,63],wr:[35,58],pe:[79,73],kn:[93,64],ft:[105,57]}},
+deadbug:{p:[GR],
+a:{hd:[40,75],sh:[49,77],el:[45,65],wr:[41,55],pe:[73,79],kn:[85,65],ft:[93,55]},
+b:{hd:[40,75],sh:[49,77],el:[53,67],wr:[57,57],pe:[73,79],kn:[89,73],ft:[101,73]}},
+plank:{p:[GR],
+a:{hd:[29,63],sh:[37,68],el:[37,80],wr:[37,90],pe:[71,74],kn:[87,82],ft:[101,90]},
+b:{hd:[29,64],sh:[37,69],el:[37,80],wr:[37,90],pe:[71,76],kn:[87,83],ft:[101,90]}},
+sideplank:{p:[GR],
+a:{hd:[28,60],sh:[36,66],el:[36,78],wr:[36,90],pe:[69,75],kn:[87,82],ft:[101,90]},
+b:{hd:[28,62],sh:[36,68],el:[36,79],wr:[36,90],pe:[69,79],kn:[87,84],ft:[101,90]}},
+copenhagen:{p:[GR,{t:'r',x:88,y:56,w:24,h:7}],
+a:{hd:[24,60],sh:[31,66],el:[31,78],wr:[31,90],pe:[63,75],kn:[80,66],ft:[97,58],kn2:[80,85],ft2:[97,90]},
+b:{hd:[24,63],sh:[31,69],el:[31,79],wr:[31,90],pe:[63,80],kn:[80,69],ft:[97,58],kn2:[80,87],ft2:[97,90]}},
+bulgare:{p:[GR,{t:'r',x:84,y:68,w:24,h:8}],
+a:{hd:[46,20],sh:[46,29],el:[44,41],wr:[42,51],pe:[49,55],kn:[45,74],ft:[43,91],kn2:[70,64],ft2:[88,68]},
+b:{hd:[46,35],sh:[46,44],el:[44,56],wr:[42,66],pe:[51,69],kn:[43,86],ft:[43,91],kn2:[74,79],ft2:[88,70]}},
+pistol:{p:[GR,{t:'r',x:76,y:68,w:26,h:8}],
+a:{hd:[48,18],sh:[48,27],el:[52,38],wr:[60,41],pe:[50,53],kn:[46,73],ft:[44,91],kn2:[66,53],ft2:[80,51]},
+b:{hd:[46,36],sh:[46,45],el:[54,53],wr:[64,53],pe:[48,67],kn:[42,81],ft:[44,91],kn2:[68,65],ft2:[84,63]}},
+ohp:{p:[GR],
+a:{hd:[50,20],sh:[50,30],el:[38,41],wr:[38,29],el2:[62,41],wr2:[62,29],pe:[50,58],kn:[50,76],ft:[50,91]},
+b:{hd:[50,20],sh:[50,30],el:[44,21],wr:[44,9],el2:[56,21],wr2:[56,9],pe:[50,58],kn:[50,76],ft:[50,91]}},
+latraise:{p:[GR],
+a:{hd:[50,20],sh:[50,30],el:[42,44],wr:[38,56],el2:[58,44],wr2:[62,56],pe:[50,58],kn:[50,76],ft:[50,91]},
+b:{hd:[50,20],sh:[50,30],el:[32,32],wr:[20,31],el2:[68,32],wr2:[80,31],pe:[50,58],kn:[50,76],ft:[50,91]}},
+rowbarre:{p:[GR],
+a:{hd:[26,44],sh:[36,49],el:[40,64],wr:[42,80],pe:[70,57],kn:[76,74],ft:[78,91]},
+b:{hd:[26,44],sh:[36,49],el:[47,58],wr:[45,63],pe:[70,57],kn:[76,74],ft:[78,91]}},
+mob:{p:[GR],
+a:{hd:[50,30],sh:[50,39],el:[44,51],wr:[38,59],pe:[53,63],kn:[40,75],ft:[47,91]},
+b:{hd:[50,35],sh:[50,44],el:[44,56],wr:[37,64],pe:[53,67],kn:[37,77],ft:[47,91]}}
+};
+var D={"start":"2026-08-31","efm":[45,45,50,50,55,45,55,50,55,50,45,40],"eft":[40,45,45,50,50,40,50,45,50,45,40,30],"q1":[["10×200m — reprise de vitesse","Réveil neuromusculaire. Foulée ample, épaules relâchées, rien de dur.",[{"k":"wu","t":"Échauffement libre","d":"Cours tranquille jusqu'à te sentir prêt, puis appuie sur LAP pour lancer la première répétition. Glisse 4-5 lignes droites dedans."},{"k":"work","t":"10 × 200 m","d":"à 3:30/km","n":10,"rec":"60 s"},{"k":"cd","t":"Retour au calme","d":"Trottine jusqu'à ce que la respiration soit revenue, puis LAP pour terminer."}]],["10×300m — VMA courte","Focus fréquence de foulée : pieds qui reviennent vite sous le bassin, buste droit.",[{"k":"wu","t":"Échauffement libre","d":"Cours tranquille jusqu'à te sentir prêt, puis appuie sur LAP pour lancer la première répétition. Glisse 4-5 lignes droites dedans."},{"k":"work","t":"10 × 300 m","d":"à 3:28/km","n":10,"rec":"75 s"},{"k":"cd","t":"Retour au calme","d":"Trottine jusqu'à ce que la respiration soit revenue, puis LAP pour terminer."}]],["8×400m — VMA","Première vraie séance de VMA du plan. Régularité : la 8e doit ressembler à la 1re.",[{"k":"wu","t":"Échauffement libre","d":"Cours tranquille jusqu'à te sentir prêt, puis appuie sur LAP pour lancer la première répétition. Glisse 4-5 lignes droites dedans."},{"k":"work","t":"8 × 400 m","d":"à 3:25/km","n":8,"rec":"75 s"},{"k":"cd","t":"Retour au calme","d":"Trottine jusqu'à ce que la respiration soit revenue, puis LAP pour terminer."}]],["10×400m — VMA","Même allure que la semaine passée, deux répétitions de plus.",[{"k":"wu","t":"Échauffement libre","d":"Cours tranquille jusqu'à te sentir prêt, puis appuie sur LAP pour lancer la première répétition. Glisse 4-5 lignes droites dedans."},{"k":"work","t":"10 × 400 m","d":"à 3:22/km","n":10,"rec":"75 s"},{"k":"cd","t":"Retour au calme","d":"Trottine jusqu'à ce que la respiration soit revenue, puis LAP pour terminer."}]],["Pyramide 400-800-1200-800-400","Montée puis descente d'allure. La 1200 est le point bas d'intensité, pas de relâchement.",[{"k":"wu","t":"Échauffement libre","d":"Cours tranquille jusqu'à te sentir prêt, puis appuie sur LAP pour lancer la première répétition. Glisse 4-5 lignes droites dedans."},{"k":"work","t":"400 m","d":"à 3:20/km · récup 90 s"},{"k":"work","t":"800 m","d":"à 3:28/km · récup 2 min"},{"k":"work","t":"1200 m","d":"à 3:45/km · récup 2 min"},{"k":"work","t":"800 m","d":"à 3:28/km · récup 2 min"},{"k":"work","t":"400 m","d":"à 3:20/km"},{"k":"cd","t":"Retour au calme","d":"Trottine jusqu'à ce que la respiration soit revenue, puis LAP pour terminer."}]],["8×300m — VMA légère","Semaine allégée : court, propre, jamais dans le rouge.",[{"k":"wu","t":"Échauffement libre","d":"Cours tranquille jusqu'à te sentir prêt, puis appuie sur LAP pour lancer la première répétition. Glisse 4-5 lignes droites dedans."},{"k":"work","t":"8 × 300 m","d":"à 3:22/km","n":8,"rec":"60 s"},{"k":"cd","t":"Retour au calme","d":"Trottine jusqu'à ce que la respiration soit revenue, puis LAP pour terminer."}]],["6×800m — VMA longue","LA séance qui construit le sub-37. Trouve le rythme dès les 200 premiers mètres.",[{"k":"wu","t":"Échauffement libre","d":"Cours tranquille jusqu'à te sentir prêt, puis appuie sur LAP pour lancer la première répétition. Glisse 4-5 lignes droites dedans."},{"k":"work","t":"6 × 800 m","d":"à 3:25/km","n":6,"rec":"2 min"},{"k":"cd","t":"Retour au calme","d":"Trottine jusqu'à ce que la respiration soit revenue, puis LAP pour terminer."}]],["12×400m — VMA","Grosse séance de volume à haute intensité. Récup courte, reste concentré.",[{"k":"wu","t":"Échauffement libre","d":"Cours tranquille jusqu'à te sentir prêt, puis appuie sur LAP pour lancer la première répétition. Glisse 4-5 lignes droites dedans."},{"k":"work","t":"12 × 400 m","d":"à 3:18/km","n":12,"rec":"60 s"},{"k":"cd","t":"Retour au calme","d":"Trottine jusqu'à ce que la respiration soit revenue, puis LAP pour terminer."}]],["Pyramide mixte 800-1600-2000-1600-800","Le corps apprend à recycler le lactate à allure course.",[{"k":"wu","t":"Échauffement libre","d":"Cours tranquille jusqu'à te sentir prêt, puis appuie sur LAP pour lancer la première répétition. Glisse 4-5 lignes droites dedans."},{"k":"work","t":"800 m","d":"à 3:25/km · récup 2 min"},{"k":"work","t":"1600 m","d":"à 3:50/km · récup 3 min"},{"k":"work","t":"2000 m","d":"à 3:41/km · récup 3 min"},{"k":"work","t":"1600 m","d":"à 3:50/km · récup 3 min"},{"k":"work","t":"800 m","d":"à 3:25/km"},{"k":"cd","t":"Retour au calme","d":"Trottine jusqu'à ce que la respiration soit revenue, puis LAP pour terminer."}]],["5×1000m — puissance aérobie","Séance exigeante. Si la 5e passe à l'allure, tu es dans les temps.",[{"k":"wu","t":"Échauffement libre","d":"Cours tranquille jusqu'à te sentir prêt, puis appuie sur LAP pour lancer la première répétition. Glisse 4-5 lignes droites dedans."},{"k":"work","t":"5 × 1000 m","d":"à 3:30/km","n":5,"rec":"2 min"},{"k":"cd","t":"Retour au calme","d":"Trottine jusqu'à ce que la respiration soit revenue, puis LAP pour terminer."}]],["10×400m — vitesse pure","Réserve de vitesse : après ça, le 3:41 doit te paraître lent.",[{"k":"wu","t":"Échauffement libre","d":"Cours tranquille jusqu'à te sentir prêt, puis appuie sur LAP pour lancer la première répétition. Glisse 4-5 lignes droites dedans."},{"k":"work","t":"10 × 400 m","d":"à 3:15/km","n":10,"rec":"60 s"},{"k":"cd","t":"Retour au calme","d":"Trottine jusqu'à ce que la respiration soit revenue, puis LAP pour terminer."}]],["6×400m — affûtage","Entretien de la vitesse sans aucune fatigue. Tu dois finir en te disant que c'était facile.",[{"k":"wu","t":"Échauffement libre","d":"Cours tranquille jusqu'à te sentir prêt, puis appuie sur LAP pour lancer la première répétition. Glisse 4-5 lignes droites dedans."},{"k":"work","t":"6 × 400 m","d":"à 3:30/km","n":6,"rec":"90 s"},{"k":"cd","t":"Retour au calme","d":"Trottine jusqu'à ce que la respiration soit revenue, puis LAP pour terminer."}]]],"q2":[["Tempo 3×8min","Confortablement soutenu : tu peux dire 3-4 mots, pas une phrase.",[{"k":"wu","t":"Échauffement libre","d":"Cours tranquille jusqu'à te sentir prêt, puis appuie sur LAP pour lancer la première répétition. Glisse 4-5 lignes droites dedans."},{"k":"work","t":"3 × 8 min","d":"à 4:10/km","n":3,"rec":"2 min"},{"k":"cd","t":"Retour au calme","d":"Trottine jusqu'à ce que la respiration soit revenue, puis LAP pour terminer."}]],["Seuil 2×12min","Allure semi actuelle, respiration contrôlée du début à la fin.",[{"k":"wu","t":"Échauffement libre","d":"Cours tranquille jusqu'à te sentir prêt, puis appuie sur LAP pour lancer la première répétition. Glisse 4-5 lignes droites dedans."},{"k":"work","t":"2 × 12 min","d":"à 4:05/km","n":2,"rec":"3 min"},{"k":"cd","t":"Retour au calme","d":"Trottine jusqu'à ce que la respiration soit revenue, puis LAP pour terminer."}]],["TEST 5 km chrono","Test de calibrage. Envoie-moi le chrono : j'ajuste toutes les allures des semaines 4 à 12.",[{"k":"wu","t":"Échauffement libre","d":"Cours tranquille jusqu'à te sentir prêt, puis appuie sur LAP pour lancer la première répétition. Glisse 4-5 lignes droites dedans."},{"k":"test","t":"5 km à fond","d":"Vise ~18:45-19:00. Pars sur 3:47/km et accélère sur le dernier km."},{"k":"cd","t":"Retour au calme","d":"Trottine jusqu'à ce que la respiration soit revenue, puis LAP pour terminer."}]],["Seuil 3×2000m","Repousse le seuil de production de lactate. Allure régulière, pas de sprint final.",[{"k":"wu","t":"Échauffement libre","d":"Cours tranquille jusqu'à te sentir prêt, puis appuie sur LAP pour lancer la première répétition. Glisse 4-5 lignes droites dedans."},{"k":"work","t":"3 × 2000 m","d":"à 3:58/km","n":3,"rec":"2 min"},{"k":"cd","t":"Retour au calme","d":"Trottine jusqu'à ce que la respiration soit revenue, puis LAP pour terminer."}]],["Seuil 2×3000m","Longs blocs au seuil. Le mental compte autant que les jambes.",[{"k":"wu","t":"Échauffement libre","d":"Cours tranquille jusqu'à te sentir prêt, puis appuie sur LAP pour lancer la première répétition. Glisse 4-5 lignes droites dedans."},{"k":"work","t":"2 × 3000 m","d":"à 3:55/km","n":2,"rec":"3 min"},{"k":"cd","t":"Retour au calme","d":"Trottine jusqu'à ce que la respiration soit revenue, puis LAP pour terminer."}]],["Footing 50 min","Semaine d'assimilation : simple footing facile.",[{"k":"ef","t":"50 min en endurance","d":"allure 5:10-5:40/km, conversation possible"}]],["AS10 5×1000m","Première prise de repères à allure course. Mémorise la sensation.",[{"k":"wu","t":"Échauffement libre","d":"Cours tranquille jusqu'à te sentir prêt, puis appuie sur LAP pour lancer la première répétition. Glisse 4-5 lignes droites dedans."},{"k":"work","t":"5 × 1000 m","d":"à 3:48/km","n":5,"rec":"90 s"},{"k":"cd","t":"Retour au calme","d":"Trottine jusqu'à ce que la respiration soit revenue, puis LAP pour terminer."}]],["Déblocage avant test","Veille de test : fraîcheur maximale, rien de dur.",[{"k":"wu","t":"Échauffement libre","d":"Cours tranquille jusqu'à te sentir prêt, puis appuie sur LAP pour lancer la première répétition. Glisse 4-5 lignes droites dedans."},{"k":"work","t":"3 × 2 min","d":"à 3:45/km","n":3,"rec":"2 min"},{"k":"cd","t":"Retour au calme","d":"Trottine jusqu'à ce que la respiration soit revenue, puis LAP pour terminer."}]],["AS10 6×1000m","Allure course cible. Chaque kilomètre doit tomber au même chrono.",[{"k":"wu","t":"Échauffement libre","d":"Cours tranquille jusqu'à te sentir prêt, puis appuie sur LAP pour lancer la première répétition. Glisse 4-5 lignes droites dedans."},{"k":"work","t":"6 × 1000 m","d":"à 3:44/km","n":6,"rec":"90 s"},{"k":"cd","t":"Retour au calme","d":"Trottine jusqu'à ce que la respiration soit revenue, puis LAP pour terminer."}]],["AS10 3×2000m — validation","Séance de validation : si elle passe proprement, le sub-37 passe.",[{"k":"wu","t":"Échauffement libre","d":"Cours tranquille jusqu'à te sentir prêt, puis appuie sur LAP pour lancer la première répétition. Glisse 4-5 lignes droites dedans."},{"k":"work","t":"3 × 2000 m","d":"à 3:41/km","n":3,"rec":"2 min 30"},{"k":"cd","t":"Retour au calme","d":"Trottine jusqu'à ce que la respiration soit revenue, puis LAP pour terminer."}]],["Seuil 2×3000m","Dernier gros seuil avant l'affûtage.",[{"k":"wu","t":"Échauffement libre","d":"Cours tranquille jusqu'à te sentir prêt, puis appuie sur LAP pour lancer la première répétition. Glisse 4-5 lignes droites dedans."},{"k":"work","t":"2 × 3000 m","d":"à 3:50/km","n":2,"rec":"2 min 30"},{"k":"cd","t":"Retour au calme","d":"Trottine jusqu'à ce que la respiration soit revenue, puis LAP pour terminer."}]],["Déblocage pré-course","J-2. Trois accélérations à allure course pour réveiller les jambes.",[{"k":"wu","t":"Échauffement libre","d":"Cours tranquille jusqu'à te sentir prêt, puis appuie sur LAP pour lancer la première répétition. Glisse 4-5 lignes droites dedans."},{"k":"work","t":"3 × 2 min","d":"à 3:41/km","n":3,"rec":"2 min"},{"k":"cd","t":"Retour au calme","d":"Trottine jusqu'à ce que la respiration soit revenue, puis LAP pour terminer."}]]],"sl":[["Sortie longue 1h15","Endurance pure. Terrain plat de préférence.",[{"k":"ef","t":"1 h 15","d":"allure 5:10-5:40/km"}]],["Sortie longue 1h25","Endurance pure.",[{"k":"ef","t":"1 h 25","d":"allure 5:10-5:40/km"}]],["Sortie longue 1h30","Semaine de test : reste vraiment facile.",[{"k":"ef","t":"1 h 30","d":"allure 5:10-5:40/km"}]],["Sortie longue 1h30 + 30 min allure","Endurance active : un bloc soutenu au milieu de la sortie.",[{"k":"ef","t":"30 min","d":"échauffement, allure 5:10-5:40/km"},{"k":"work","t":"30 min","d":"à 4:15/km"},{"k":"ef","t":"30 min","d":"retour au calme, 5:10-5:40/km"}]],["Sortie longue 1h40","La plus longue du plan. Reste facile en permanence.",[{"k":"ef","t":"1 h 40","d":"allure 5:10-5:40/km"}]],["Sortie longue 1h15","On assimile la charge des 5 premières semaines.",[{"k":"ef","t":"1 h 15","d":"allure 5:10-5:40/km"}]],["Sortie longue 1h30 + 3×10 min","Blocs tempo en état de fatigue : c'est là que ça paye.",[{"k":"ef","t":"25 min","d":"échauffement, 5:10-5:40/km"},{"k":"work","t":"3 × 10 min","d":"à 4:00/km","n":3,"rec":"3 min"},{"k":"ef","t":"15 min","d":"retour au calme"}]],["TEST 10 km","Répétition générale. Vise 38:00 régulier, ne pars surtout pas trop vite.",[{"k":"wu","t":"Échauffement libre","d":"Cours tranquille jusqu'à te sentir prêt, puis appuie sur LAP pour lancer la première répétition. Glisse 4-5 lignes droites dedans."},{"k":"test","t":"10 km","d":"à 3:48/km, le plus régulier possible"},{"k":"cd","t":"Retour au calme","d":"Trottine jusqu'à ce que la respiration soit revenue, puis LAP pour terminer."}]],["Sortie longue 1h20 + 20 min seuil","Bloc de seuil inséré dans la sortie longue.",[{"k":"ef","t":"30 min","d":"échauffement, 5:10-5:40/km"},{"k":"work","t":"20 min","d":"à 3:55/km"},{"k":"ef","t":"30 min","d":"retour au calme"}]],["Sortie longue 1h30","Endurance pure.",[{"k":"ef","t":"1 h 30","d":"allure 5:10-5:40/km"}]],["Sortie longue 1h10 + 15 min AS10","Dernière charge avant l'affûtage.",[{"k":"ef","t":"25 min","d":"échauffement, 5:10-5:40/km"},{"k":"work","t":"15 min","d":"à 3:45/km"},{"k":"ef","t":"30 min","d":"retour au calme"}]],["COURSE — 10 km sub-37","JOUR J. 3:42/km les 3 premiers km, 3:41 jusqu'au 8e, puis tout donner.",[{"k":"wu","t":"Échauffement libre","d":"Cours tranquille jusqu'à te sentir prêt, puis appuie sur LAP pour lancer la première répétition. Glisse 4-5 lignes droites dedans."},{"k":"test","t":"10 km","d":"Objectif 36:50 · allure 3:41/km"},{"k":"cd","t":"Retour au calme","d":"Trottine jusqu'à ce que la respiration soit revenue, puis LAP pour terminer."}]]],"cl":[[[["traction","Tractions pronation","6-8 reps","Descends bras tendus à chaque rep. Si tu n'en as pas 6 : saute en haut et descends en 5 s."],["pike","Pompes pike, pieds au sol","10-12 reps","Bassin haut, tête qui descend entre les mains, coudes à 45°."]],[["row","Rows australiens, barre à hauteur de hanches","12 reps","Corps gainé en planche, tire le sternum vers la barre."],["handstand","Gainage handstand au mur","20-30 s","Ventre rentré, fesses serrées, pousse le sol loin de toi."]]],[[["traction","Tractions pronation, 3 s de descente","8-10 reps","La descente lente est le vrai moteur de progression."],["pike","Pompes pike, pieds sur un banc","8-10 reps","Plus les pieds sont hauts, plus c'est proche du poirier."]],[["row","Rows australiens pieds surélevés","12 reps","Corps horizontal : le bras de levier augmente nettement."],["handstand","Gainage handstand au mur","30-45 s","Cherche l'alignement poignets-épaules-bassin."]]],[[["traction","Tractions archer","5-6 par côté","Un bras tire, l'autre reste tendu sur la barre. Alterne à chaque rep."],["hspu","Pompes en poirier au mur, amplitude partielle","5-8 reps","Descends de ce que tu contrôles, remonte sans à-coup."]],[["row","Archer rows","8 par côté","Même principe que les tractions archer, à l'horizontale."],["handstand","Gainage handstand au mur","45-60 s","Objectif de fin de plan : tenir une minute pleine."]]]],"cla":[[["facepull","Rows australiens prise large tirés vers le visage","3 × 15","Deltoïde arrière : c'est LUI qui donne l'épaule large."],["hollow","Hollow hold","3 × 30 s","Bas du dos collé au sol, sinon ça ne compte pas."]],[["facepull","Rows prise large vers le visage","3 × 15","Marque une pause d'une seconde en position haute."],["hollow","Hollow hold","3 × 45 s",""]],[["facepull","Rows prise large vers le visage, 3 s de descente","3 × 15",""],["hollow","Hollow rocks","3 × 20","Le corps bascule d'un bloc, comme une coque de bateau."]]],"cm":[[[["hipthrust","Hip thrust une jambe, dos au sol","12 par côté","Pousse avec le talon, serre la fesse en haut sans cambrer."],["hollow","Hollow hold","30 s","Bas du dos plaqué, bras dans le prolongement."]],[["bulgare","Fentes bulgares, pied arrière sur une chaise","10 par jambe","Genou avant qui suit l'axe du pied, buste légèrement penché."],["sideplank","Planche latérale","30 s par côté","Hanche haute, corps aligné vu de face."]]],[[["hipthrust","Hip thrust une jambe, épaules sur le canapé","12 par côté, 2 s de pause en haut","L'amplitude augmente beaucoup : c'est la vraie progression."],["hollow","Hollow rocks","15 reps",""]],[["bulgare","Fentes bulgares tempo 3-1-1","10 par jambe","3 s pour descendre, 1 s en bas, 1 s pour remonter."],["copenhagen","Copenhagen plank sur chaise, genou fléchi","20 s par côté","Adducteurs et obliques : c'est ce qui gaine la taille."]]],[[["hipthrust","Hip thrust une jambe, épaules ET pied surélevés","12 par côté, 2 s de pause","Amplitude maximale au poids du corps."],["hollow","Hollow rocks bras tendus au-dessus de la tête","15 reps","Bras loin = levier plus long = plus dur."]],[["pistol","Squat une jambe sur chaise (progression pistol)","6-8 par jambe","Descends en contrôle, effleure la chaise, remonte sans élan."],["copenhagen","Copenhagen plank complet, jambe tendue","25 s par côté",""]]]],"cma":[[["deadbug","Dead bug","3 × 12 par côté","Bras et jambe opposés, sans jamais décoller le bas du dos."],["pont","Pont fessier deux jambes","3 × 45 s en isométrie",""]],[["deadbug","Dead bug","3 × 12 par côté",""],["pont","Pont fessier une jambe","3 × 30 s par côté",""]],[["deadbug","Dead bug jambes tendues","3 × 12 par côté",""],["pont","Pont fessier une jambe","3 × 45 s par côté",""]]],"cj":[[[["dips","Dips sur barres parallèles","8 reps","Buste légèrement penché en avant. Trop dur ? Dips sur un banc, pieds au sol."],["curl","Curls australiens : barre basse en supination","12 reps","Coudes fixes le long du corps, seul l'avant-bras bouge."]],[["pompe","Pompes classiques","15 reps","Corps en planche, coudes à 45°, poitrine qui frôle le sol."],["tractionsup","Tractions supination","6-8 reps","Prise mains vers toi : le biceps travaille beaucoup plus."]]],[[["dips","Dips, 3 s de descente","10-12 reps","La descente lente, c'est ta surcharge progressive."],["curl","Curls australiens, barre plus basse","12 reps","Plus le corps est horizontal, plus c'est lourd."]],[["pompe","Pompes déclinées, pieds sur un banc","12 reps","Reporte le poids sur le haut des pectoraux."],["tractionsup","Tractions supination","8-10 reps",""]]],[[["dips","Dips lents, 4 s de descente","6-8 reps",""],["curl","Curls australiens, barre au niveau des hanches","10 reps, 3 s de descente","Corps quasi horizontal : la version la plus dure sans matériel."]],[["archer","Pompes archer","6-8 par côté","Un bras fléchit, l'autre reste tendu : proche de la pompe à un bras."],["tractionsup","Tractions supination lentes","6 reps, 4 s de montée et 4 s de descente",""]]]],"cja":[[["skull","Extensions triceps sur barre basse","3 × 12","Skull crusher au poids du corps : coudes fixes, seul l'avant-bras plie."],["legraise","Relevés de jambes suspendu","3 × 12","Ou V-ups au sol si la barre n'est pas dispo."]],[["skull","Extensions triceps sur barre basse, barre plus basse","3 × 12",""],["legraise","Relevés de jambes suspendu","3 × 15",""]],[["skull","Extensions triceps sur barre basse, 3 s de descente","3 × 12",""],["legraise","Relevés de jambes tendues suspendu","3 × 12","Jambes tendues = levier maximal sur les abdos."]]],"gl":[[[["traction","Tirage vertical à la poulie","4 × 10","Sternum vers le haut, tire avec les coudes pas avec les mains."],["ohp","Développé militaire haltères","10 reps","Côtes basses, ne cambre pas le bas du dos."]],[["rowbarre","Rowing barre en pronation","10 reps","Dos plat, buste à 45°, barre vers le nombril."],["latraise","Élévations latérales haltères","15 reps","Monte à l'horizontale, pas plus haut. Charge légère, tempo lent."]]],[[["traction","Tirage vertical lourd (ou traction lestée)","8 reps",""],["ohp","Développé militaire haltères","8 reps",""]],[["rowbarre","Rowing barre","8 reps",""],["latraise","Élévations latérales","12-15 reps, charge ↑",""]]],[[["traction","Tractions lestées","6 reps","À la salle, le lest est autorisé : c'est ce qui différencie des séances callisthénie."],["ohp","Développé militaire barre","6-8 reps",""]],[["rowbarre","Rowing T-bar ou haltère unilatéral","8 par bras",""],["latraise","Élévations latérales dégressives","12 + 12","Série lourde puis charge allégée sans repos."]]]],"gla":[[["facepull","Face pull à la poulie","3 × 15","Coudes hauts, mains qui passent au-dessus des épaules."],["curl","Curl barre EZ","3 × 12",""],["plank","Gainage planche","3 × 45 s",""]],[["facepull","Face pull à la poulie","3 × 15",""],["curl","Curl barre EZ","3 × 12",""],["plank","Gainage planche","3 × 45 s",""]],[["facepull","Face pull à la poulie","3 × 15",""],["curl","Curl barre EZ","3 × 12",""],["plank","Gainage planche","3 × 45 s",""]]],"gj":[[[["bench","Développé couché haltères","4 × 10","Omoplates serrées, descente contrôlée jusqu'à la poitrine."],["curl","Curl incliné haltères","12 reps","Banc incliné : étirement maximal du biceps en bas."]],[["dips","Dips machine ou barres parallèles","10 reps",""],["rowbarre","Tirage horizontal prise serrée","12 reps",""]]],[[["bench","Développé couché barre","8 reps",""],["curl","Curl incliné haltères","10 reps",""]],[["dips","Dips lestés","8 reps",""],["rowbarre","Tirage horizontal","10 reps, charge ↑",""]]],[[["bench","Développé couché barre lourd","5-6 reps",""],["curl","Curl marteau lourd","8 reps","Prise neutre : cible le brachial, celui qui épaissit le bras."]],[["dips","Dips lestés","6 reps",""],["rowbarre","Tirage horizontal prise neutre","8 reps",""]]]],"gja":[[["skull","Extension triceps poulie haute","3 × 12","Coudes collés au corps, immobiles."],["hipthrust","Hip thrust à la barre","3 × 12",""],["legraise","Crunch à la poulie","3 × 15",""]],[["skull","Extension triceps poulie haute","3 × 12",""],["hipthrust","Hip thrust à la barre","3 × 12",""],["legraise","Crunch à la poulie","3 × 15",""]],[["skull","Extension triceps poulie haute","3 × 12",""],["hipthrust","Hip thrust à la barre","3 × 12",""],["legraise","Crunch à la poulie","3 × 15",""]]],"mob":[["mob","90/90 hanches","2 × 60 s par côté","Assis, jambes à 90°, bascule d'un côté à l'autre sans forcer."],["mob","Pigeon","2 × 45 s par côté","Ouvre la hanche avant, respire dans la position."],["mob","Squat profond tenu","3 × 45 s","Talons au sol, coudes qui poussent les genoux vers l'extérieur."],["mob","Ouverture thoracique au sol","2 × 60 s par côté","Allongé sur le côté, ouvre le bras du dessus vers l'arrière."],["mob","Wall slides","2 × 12","Dos au mur, fais glisser les avant-bras vers le haut sans décoller."],["mob","Étirement psoas","2 × 45 s par côté","Fente au sol, bascule le bassin vers l'avant, fesse serrée."]],"i":["Dans chaque duo, tirer et pousser alternent : aucun muscle ne travaille deux fois de suite.","Fessiers et sangle abdominale ne se gênent pas du tout : tu enchaînes sans perte de force.","Le duo antagoniste le plus efficace : quand tu pousses, le biceps est au repos total."]};
+function _d(w,dow){var t=new Date(2026,7,31);t.setDate(t.getDate()+(w-1)*7+dow);
+var p=function(n){return(n<10?'0':'')+n};return t.getFullYear()+'-'+p(t.getMonth()+1)+'-'+p(t.getDate())}
+function _e(a){return{a:a[0],n:a[1],s:a[2],f:a[3]}}
+function _b(w){return w<=4?0:(w<=8?1:2)}
+function _s(prog,w,dow,h,titre,intro,ss,acc,mob,lieu){
+var b=_b(w),dl=(w===6||w===12);
+return{date:_d(w,dow),h:h,prog:prog,sem:w,lieu:lieu,nom:titre+(dl?' (allégée)':''),intro:intro,
+tours:dl?2:3,ss:ss[b].map(function(p){return p.map(_e)}),acc:acc[b].map(_e),
+mob:mob?D.mob.map(_e):[]}}
+var PLAN=[];
+for(var w=1;w<=12;w++){
+PLAN.push({date:_d(w,0),h:'10:00',prog:'course',sem:w,nom:'EF '+D.efm[w-1]+' min',
+intro:'Footing facile. Tu dois pouvoir tenir une conversation complète du début à la fin.',
+blocs:[{k:'ef',t:D.efm[w-1]+' min',d:'allure 5:10-5:40/km'}]});
+PLAN.push({date:_d(w,1),h:'11:30',prog:'course',sem:w,nom:D.q1[w-1][0],intro:D.q1[w-1][1],blocs:D.q1[w-1][2]});
+PLAN.push({date:_d(w,3),h:'10:00',prog:'course',sem:w,nom:'EF '+D.eft[w-1]+' min',
+intro:'Footing facile, allure de récupération.'+(w%2?' Termine par 5 lignes droites de 80 m.':''),
+blocs:[{k:'ef',t:D.eft[w-1]+' min',d:'allure 5:10-5:40/km'}]});
+PLAN.push({date:_d(w,4),h:'11:30',prog:'course',sem:w,nom:D.q2[w-1][0],intro:D.q2[w-1][1],blocs:D.q2[w-1][2]});
+PLAN.push({date:_d(w,6),h:'09:00',prog:'course',sem:w,nom:D.sl[w-1][0],intro:D.sl[w-1][1],blocs:D.sl[w-1][2]});
+PLAN.push(_s('callis',w,0,'11:00','Callisthénie : Dos & Épaules',D.i[0],D.cl,D.cla,0,'Barre de traction + barre basse (terrain de sport)'));
+PLAN.push(_s('callis',w,2,'11:00','Callisthénie : Abdos & Fessiers',D.i[1],D.cm,D.cma,1,'Maison — aucun matériel'));
+PLAN.push(_s('callis',w,3,'11:00','Callisthénie : Pecs/Triceps & Biceps',D.i[2],D.cj,D.cja,0,'Barres du terrain de sport'));
+PLAN.push(_s('salle',w,0,'11:00','Muscu salle : Dos & Épaules',D.i[0],D.gl,D.gla,0,'Salle de sport'));
+PLAN.push(_s('salle',w,3,'11:00','Muscu salle : Pecs/Triceps & Biceps',D.i[2],D.gj,D.gja,0,'Salle de sport'));
+}
+PLAN.sort(function(a,b){return a.date<b.date?-1:a.date>b.date?1:(a.h<b.h?-1:1)});
+var LS={get:function(k,d){try{var v=localStorage.getItem('coach_'+k);return v?JSON.parse(v):d}catch(e){return d}},
+set:function(k,v){try{localStorage.setItem('coach_'+k,JSON.stringify(v))}catch(e){}}};
+var MOIS=['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+var JOURS=['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'];
+function iso(d){var p=function(n){return(n<10?'0':'')+n};return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())}
+function parse(s){var a=s.split('-');return new Date(+a[0],+a[1]-1,+a[2])}
+var PROGN={course:'Course',callis:'Callisthénie',salle:'Muscu salle'};
+var PROGC={course:'run',callis:'cal',salle:'gym'};
+function lerp(a,b,t){return a+(b-a)*t}
+function drawFig(svg,key,phase){
+var A=ANIM[key]||ANIM.mob, pa=A.a, pb=A.b, o={};
+var e=phase<.5?(phase*2):(2-phase*2); e=e<.5?2*e*e:1-Math.pow(-2*e+2,2)/2;
+for(var j in pa){ var q=pb[j]||pa[j]; o[j]=[lerp(pa[j][0],q[0],e),lerp(pa[j][1],q[1],e)]; }
+var s='';
+(A.p||[]).forEach(function(pr){
+if(pr.t==='l') s+='<line x1="'+pr.x1+'" y1="'+pr.y1+'" x2="'+pr.x2+'" y2="'+pr.y2+'" stroke="#cfcbc2" stroke-width="3" stroke-linecap="round"/>';
+else s+='<rect x="'+pr.x+'" y="'+pr.y+'" width="'+pr.w+'" height="'+pr.h+'" rx="2" fill="#e6e2d9"/>';
+});
+function L(p,q,w){ if(!o[p]||!o[q])return''; return '<line x1="'+o[p][0]+'" y1="'+o[p][1]+'" x2="'+o[q][0]+'" y2="'+o[q][1]+'" stroke="#2b2b2b" stroke-width="'+(w||4)+'" stroke-linecap="round"/>'}
+s+=L('sh','pe',5)+L('sh','el')+L('el','wr')+L('pe','kn')+L('kn','ft');
+s+=L('sh','el2')+L('el2','wr2')+L('pe','kn2')+L('kn2','ft2');
+if(o.hd) s+='<circle cx="'+o.hd[0]+'" cy="'+o.hd[1]+'" r="6.5" fill="#2b2b2b"/>';
+svg.innerHTML=s;
+}
+var figs=[];
+function regFig(el,key){figs.push({el:el,k:key})}
+var t0=Date.now();
+function tick(){var ph=((Date.now()-t0)%2600)/2600;
+for(var i=0;i<figs.length;i++) drawFig(figs[i].el,figs[i].k,ph);
+requestAnimationFrame(tick)}
+var TM={id:null,left:0,tot:0};
+function beep(){try{var c=new(window.AudioContext||window.webkitAudioContext)();
+[0,.18].forEach(function(d,i){var o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);
+o.frequency.value=i?1046:784;g.gain.setValueAtTime(.001,c.currentTime+d);
+g.gain.exponentialRampToValueAtTime(.35,c.currentTime+d+.02);
+g.gain.exponentialRampToValueAtTime(.001,c.currentTime+d+.16);
+o.start(c.currentTime+d);o.stop(c.currentTime+d+.18)})}catch(e){}}
+function fmt(s){var m=Math.floor(s/60);return m+':'+((s%60)<10?'0':'')+(s%60)}
+function paintTimer(){var d=document.getElementById('disp');
+d.textContent=TM.id?fmt(TM.left):(TM.left?fmt(TM.left):'—:—');
+d.className='disp'+(TM.id?' run':'');
+document.getElementById('btog').textContent=TM.id?'Arrêter':'Repos 90 s';
+document.getElementById('btog').className=TM.id?'stop':''}
+function startTimer(sec){ if(TM.id){clearInterval(TM.id);TM.id=null}
+TM.left=sec;TM.tot=sec;paintTimer();
+TM.id=setInterval(function(){TM.left--;if(TM.left<=0){clearInterval(TM.id);TM.id=null;beep();TM.left=0}paintTimer()},1000)}
+function togTimer(){ if(TM.id){clearInterval(TM.id);TM.id=null;TM.left=0;paintTimer()} else startTimer(90) }
+var cur=new Date(); var sel=0;
+function sessionsOf(date){var k=iso(date);return PLAN.filter(function(s){return s.date===k})}
+function go(n){cur.setDate(cur.getDate()+n);sel=0;render()}
+function goDate(s){cur=parse(s);sel=0;render()}
+function goToday(){cur=new Date();sel=0;render()}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function exoHTML(e,cls){
+return '<div class="exo"><svg viewBox="0 0 130 100" data-a="'+esc(e.a)+'"></svg><div class="txt">'+
+'<div class="n">'+esc(e.n)+'</div><div class="s">'+esc(e.s)+'</div>'+
+(e.f?'<div class="f">'+esc(e.f)+'</div>':'')+'</div></div>'}
+function render(){
+var app=document.getElementById('app'), ss=sessionsOf(cur), h='';
+var jour=JOURS[cur.getDay()], dd=cur.getDate()+' '+MOIS[cur.getMonth()];
+document.getElementById('dj').textContent=jour+' '+dd;
+var t=new Date(); var isT=iso(t)===iso(cur);
+document.getElementById('dsub').textContent=isT?"aujourd'hui":(ss.length?('semaine '+ss[0].sem+' du plan'):'');
+var tb='';
+if(ss.length>1) ss.forEach(function(s,i){tb+='<button class="tab '+PROGC[s.prog]+(i===sel?' on':'')+'" onclick="sel='+i+';render()">'+PROGN[s.prog]+'</button>'});
+document.getElementById('tabs').innerHTML=tb;
+if(!ss.length){app.innerHTML='<div class="empty">Repos.<br><small>Rien de prévu ce jour-là.</small></div>';figs=[];return}
+var s=ss[Math.min(sel,ss.length-1)], c=PROGC[s.prog];
+h+='<h1>'+esc(s.nom)+'<span class="badge">S'+s.sem+'</span></h1>';
+h+='<div class="meta">'+s.h+(s.lieu?' · '+esc(s.lieu):'')+'</div>';
+h+='<div class="intro '+c+'">'+esc(s.intro)+'</div>';
+if(s.prog==='course'){
+h+='<h2>Déroulé de la séance</h2><div class="tl">';
+s.blocs.forEach(function(b){
+h+='<div class="st k-'+b.k+'"><div class="bar"></div><div><div class="t">'+esc(b.t)+'</div>'+
+'<div class="d">'+esc(b.d)+'</div></div></div>'});
+h+='</div><div class="foot">Sur la montre : la séance est déjà chargée. L\'échauffement et le retour au calme attendent que <b>tu</b> appuies sur LAP ; entre les répétitions, tout s\'enchaîne tout seul.</div>';
+} else {
+var key='chk_'+s.date+'_'+s.prog, done=LS.get(key,{});
+s.ss.forEach(function(pair,pi){
+h+='<h2>Superset '+(pi+1)+' — '+s.tours+' tours</h2><div class="card '+c+'">';
+h+='<div class="head"><span>Enchaîne A puis B sans repos, puis 90 s</span><span class="rounds">';
+for(var r=0;r<s.tours;r++){var id=pi+'-'+r;
+h+='<button class="rd'+(done[id]?' done':'')+'" onclick="tog(\''+key+'\',\''+id+'\')">'+(r+1)+'</button>'}
+h+='</span></div>';
+pair.forEach(function(e,ei){h+='<div class="pair">'+exoHTML(e,c)+'</div>'});
+h+='</div>';
+});
+h+='<h2>Finition</h2>';
+s.acc.forEach(function(e,i){
+var lk='log_'+s.prog+'_'+e.n, prev=LS.get(lk,'');
+h+='<div class="card '+c+'">'+exoHTML(e,c)+
+'<div class="log"><span>Réalisé</span><input placeholder="ex. 3 × 14" value="'+esc(LS.get('log_'+s.date+'_'+e.n,''))+
+'" oninput="saveLog(\''+s.date+'\',\''+esc(e.n).replace(/'/g,"")+'\',this.value)">'+
+(prev?'<span class="prev">dernière fois : '+esc(prev)+'</span>':'')+'</div></div>'});
+if(s.mob&&s.mob.length){h+='<h2>Mobilité — 15 min</h2>';
+s.mob.forEach(function(e){h+='<div class="card '+c+'">'+exoHTML(e,c)+'</div>'})}
+h+='<div class="foot"><b>100 % poids du corps</b> pour la callisthénie : la progression vient du bras de levier, du travail unilatéral et du tempo, jamais de la charge. Shake de protéines après la séance ; créatine 3-5 g tous les jours.</div>';
+}
+h+='<h2>Aller à une semaine</h2><div class="weeks">';
+for(var w=1;w<=12;w++){var f=PLAN.filter(function(x){return x.sem===w})[0];
+h+='<button class="wk'+(f&&s.sem===w?' on':'')+'" onclick="goDate(\''+f.date+'\')">S'+w+
+'<small>'+parse(f.date).getDate()+'/'+(parse(f.date).getMonth()+1)+'</small></button>'}
+h+='</div>';
+app.innerHTML=h;
+figs=[];
+Array.prototype.forEach.call(app.querySelectorAll('svg[data-a]'),function(el){regFig(el,el.getAttribute('data-a'))});
+}
+function tog(key,id){var o=LS.get(key,{});o[id]=!o[id];LS.set(key,o);
+if(o[id])startTimer(90); render()}
+function saveLog(date,n,v){LS.set('log_'+date+'_'+n,v);LS.set('log_perf_'+n,v)}
+window.onload=function(){render();tick();paintTimer();
+var x=null;document.addEventListener('touchstart',function(e){x=e.touches[0].clientX},{passive:true});
+document.addEventListener('touchend',function(e){if(x===null)return;var d=e.changedTouches[0].clientX-x;
+if(Math.abs(d)>70)go(d>0?-1:1);x=null},{passive:true})}</script></body></html>
