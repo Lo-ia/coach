@@ -1,0 +1,25 @@
+{
+ "name": "Coach — 10 km sub-37",
+ "short_name": "Coach",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "orientation": "portrait",
+ "background_color": "#f7f6f3",
+ "theme_color": "#f7f6f3",
+ "description": "Plan 12 semaines : course, callisthénie et muscu salle, avec animations et minuteur.",
+ "icons": [
+  {
+   "src": "icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any maskable"
+  },
+  {
+   "src": "icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any maskable"
+  }
+ ]
+}
