@@ -1,0 +1,202 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Essai 3D — Hip thrust à la barre</title><style>
+:root{color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:#f7f6f3;color:#1a1a1a;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:14px}
+.wrap{max-width:560px;margin:0 auto}
+h1{font-size:19px;margin:0 0 2px}
+.sub{font-size:13px;color:#6b6b6b;margin-bottom:14px}
+.card{background:#fff;border:1px solid #e4e2dd;border-radius:14px;margin-bottom:16px;overflow:hidden}
+.hd{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:11px 13px;background:#f2f0eb}
+.hd b{font-size:13.5px}
+.hd span{font-size:11.5px;color:#6b6b6b}
+canvas{display:block;width:100%;height:300px;touch-action:none;cursor:grab;background:#f6f5f2}
+canvas:active{cursor:grabbing}
+.ft{padding:10px 13px;font-size:12.5px;color:#6b6b6b;display:flex;justify-content:space-between;gap:10px;align-items:center}
+button{border:1px solid #e4e2dd;background:#faf9f7;border-radius:9px;padding:7px 11px;font:inherit;font-size:12.5px;cursor:pointer}
+.demo{display:block;text-align:center;background:#c8102e;color:#fff;text-decoration:none;border-radius:12px;padding:13px;font-size:14.5px;font-weight:600;margin-top:6px}
+.note{font-size:12.5px;color:#6b6b6b;margin-top:16px;line-height:1.5}
+</style></head><body><div class="wrap">
+<h1>Hip thrust à la barre</h1>
+<div class="sub">Trois rendus du même exercice. Fais glisser le doigt sur l'image pour tourner autour.</div>
+
+<div class="card"><div class="hd"><b>A — Volumes ombrés</b><span>proposition 1</span></div>
+<canvas id="c1"></canvas><div class="ft"><span>Membres arrondis, ombrage, fessier en rouge</span><button onclick="reset(0)">Recadrer</button></div></div>
+
+<div class="card"><div class="hd"><b>B — Silhouette 3D simple</b><span>proposition 2</span></div>
+<canvas id="c2"></canvas><div class="ft"><span>Mêmes volumes, aplats sans ombrage</span><button onclick="reset(1)">Recadrer</button></div></div>
+
+<div class="card"><div class="hd"><b>C — Volumes + repères anatomiques</b><span>proposition 3</span></div>
+<canvas id="c3"></canvas><div class="ft"><span>Ombrage plus zone musculaire annotée</span><button onclick="reset(2)">Recadrer</button></div></div>
+
+<a class="demo" href="https://www.google.com/search?q=hip+thrust+barre+technique&tbm=vid" target="_blank" rel="noopener">Voir une démonstration vidéo</a>
+<div class="note">La 3D est calculée dans la page : elle tourne, fonctionne hors ligne et je peux corriger chaque position au degré près. Le lien vidéo ouvre une recherche externe — je ne peux pas intégrer de vidéo existante dans l'appli, ce sont des contenus protégés.</div>
+</div>
+<script>/* Rendu 3D minimal : squelette en volumes, rotation a la souris/au doigt. */
+function v(x,y,z){return{x:x,y:y,z:z}}
+function ikPlane(a,b,l1,l2,sign){ // dans le plan x/y, renvoie l'articulation intermediaire
+  var dx=b.x-a.x, dy=b.y-a.y, d=Math.min(Math.hypot(dx,dy), l1+l2-.01);
+  var base=Math.atan2(dy,dx);
+  var c=Math.max(-1,Math.min(1,(d*d+l1*l1-l2*l2)/(2*d*l1)));
+  var an=base+sign*Math.acos(c);
+  return v(a.x+Math.cos(an)*l1, a.y+Math.sin(an)*l1, (a.z+b.z)/2);
+}
+var L={torse:30,cou:8,tete:7.5,bras:17,avb:16,cuisse:22,tibia:21,pied:7,epaule:11,hanche:9};
+
+/* ---- hip thrust a la barre : pose 3D parametree par u (0 = bas, 1 = haut) ---- */
+function poseHipThrust(u){
+  var sh=v(-22,30,0);
+  var ang=(-33.5)*(1-u)+0*u;                 // inclinaison du tronc
+  var r=ang*Math.PI/180;
+  var pel=v(sh.x+Math.cos(r)*L.torse, sh.y+Math.sin(r)*L.torse, 0);
+  var head=v(sh.x-9, sh.y+3.5, 0);
+  var P={sh:sh, pel:pel, head:head};
+  ['g','d'].forEach(function(s){
+    var z=(s==='g'?-1:1);
+    var hip=v(pel.x,pel.y,z*L.hanche), shz=v(sh.x,sh.y,z*L.epaule);
+    var ft=v(30,0,z*11);
+    var kn=ikPlane(hip,ft,L.cuisse,L.tibia,-1); kn.z=z*(L.hanche+1);
+    var hand=v(pel.x, pel.y+5, z*24);
+    var el=ikPlane(shz,hand,L.bras,L.avb,1); el.z=z*(L.epaule+4);
+    P['hip'+s]=hip; P['kn'+s]=kn; P['ft'+s]=ft; P['sh'+s]=shz; P['el'+s]=el; P['wr'+s]=hand;
+    P['to'+s]=v(ft.x+L.pied, 0, z*11);
+  });
+  P.bar=v(pel.x, pel.y+5, 0);
+  return P;
+}
+/* ---- projection ---- */
+function makeCam(yaw,pitch,zoom,cx,cy){
+  var cy1=Math.cos(yaw),sy=Math.sin(yaw),cp=Math.cos(pitch),sp=Math.sin(pitch);
+  return function(p){
+    var x=p.x*cy1+p.z*sy, z=-p.x*sy+p.z*cy1;
+    var y=p.y*cp - z*sp,  d=p.y*sp + z*cp;
+    var s=zoom*(1+d*0.0016);
+    return {x:cx+x*s, y:cy-y*s, d:d, s:s};
+  };
+}
+/* ---- primitives ---- */
+function capsule(ctx,A,B,r1,r2,col,style){
+  var dx=B.x-A.x, dy=B.y-A.y, len=Math.hypot(dx,dy)||1, nx=-dy/len, ny=dx/len;
+  var g;
+  if(style==='ombre'){
+    g=ctx.createLinearGradient(A.x+nx*r1,A.y+ny*r1,A.x-nx*r1,A.y-ny*r1);
+    g.addColorStop(0, shade(col,1.28)); g.addColorStop(.45, col); g.addColorStop(1, shade(col,.62));
+  } else g=col;
+  ctx.fillStyle=g; ctx.beginPath();
+  var a=Math.atan2(dy,dx);
+  ctx.arc(A.x,A.y,r1,a+Math.PI/2,a-Math.PI/2);
+  ctx.arc(B.x,B.y,r2,a-Math.PI/2,a+Math.PI/2);
+  ctx.closePath(); ctx.fill();
+  if(style!=='plat'){ctx.strokeStyle='rgba(0,0,0,.16)';ctx.lineWidth=1;ctx.stroke()}
+}
+function shade(hex,f){
+  var n=parseInt(hex.slice(1),16), r=(n>>16)&255, g=(n>>8)&255, b=n&255;
+  var c=function(x){return Math.max(0,Math.min(255,Math.round(x*f)))};
+  return 'rgb('+c(r)+','+c(g)+','+c(b)+')';
+}
+function disque(ctx,C,r,col,style){
+  var g=col;
+  if(style==='ombre'){g=ctx.createRadialGradient(C.x-r*.35,C.y-r*.4,r*.1,C.x,C.y,r);
+    g.addColorStop(0,shade(col,1.35));g.addColorStop(1,shade(col,.7));}
+  ctx.fillStyle=g;ctx.beginPath();ctx.arc(C.x,C.y,r,0,6.2832);ctx.fill();
+  if(style!=='plat'){ctx.strokeStyle='rgba(0,0,0,.16)';ctx.lineWidth=1;ctx.stroke()}
+}
+
+
+var INK='#3a3f46', PEAU='#4a5058', MUSCLE='#d8232f', METAL='#8f939a', BOIS='#cfc9bc';
+function dessine3D(ctx,W,H,u,yaw,pitch,style){
+  ctx.clearRect(0,0,W,H);
+  var cam=makeCam(yaw,pitch,W/150,W/2,H*0.66);
+  var P=poseHipThrust(u);
+  var items=[];
+  function seg(a,b,r1,r2,col){var A=cam(a),B=cam(b);
+    items.push({d:(A.d+B.d)/2, f:function(){capsule(ctx,A,B,r1*A.s/2.4,r2*B.s/2.4,col,style)}})}
+  function bal(c,r,col){var C=cam(c);
+    items.push({d:C.d, f:function(){disque(ctx,C,r*C.s/2.4,col,style)}})}
+
+  // sol
+  ctx.save();
+  var g=ctx.createLinearGradient(0,H*0.55,0,H);
+  g.addColorStop(0,'#efede8');g.addColorStop(1,'#e2dfd8');ctx.fillStyle=g;
+  var p0=cam(v(-70,0,-50)),p1=cam(v(70,0,-50)),p2=cam(v(70,0,50)),p3=cam(v(-70,0,50));
+  ctx.beginPath();ctx.moveTo(p0.x,p0.y);ctx.lineTo(p1.x,p1.y);ctx.lineTo(p2.x,p2.y);ctx.lineTo(p3.x,p3.y);
+  ctx.closePath();ctx.fill();ctx.restore();
+
+  // banc
+  [[-40,26,-14],[-40,26,14]].forEach(function(a){});
+  var bq=[v(-42,26,-15),v(-12,26,-15),v(-12,26,15),v(-42,26,15)].map(cam);
+  items.push({d:Math.min.apply(null,bq.map(function(q){return q.d}))-6, f:function(){
+    ctx.fillStyle=style==='plat'?BOIS:shade(BOIS,1.02);
+    ctx.beginPath();ctx.moveTo(bq[0].x,bq[0].y);bq.slice(1).forEach(function(q){ctx.lineTo(q.x,q.y)});
+    ctx.closePath();ctx.fill();
+    ctx.fillStyle=shade(BOIS,.78);
+    [[-40,-13],[-14,-13],[-40,13],[-14,13]].forEach(function(c){
+      var t=cam(v(c[0],26,c[1])), b=cam(v(c[0],0,c[1]));
+      ctx.fillRect(t.x-2.5,t.y,5,b.y-t.y);});
+  }});
+
+  // muscle travaille : fessier (cuisse haute) et tronc
+  var hot = {cuisseg:1, cuissed:1};
+  ['g','d'].forEach(function(s){
+    seg(P['ft'+s],P['to'+s],4,3,PEAU);
+    seg(P['kn'+s],P['ft'+s],6,4.5,PEAU);
+    seg(P['hip'+s],P['kn'+s],9,6.5, hot['cuisse'+s]?MUSCLE:PEAU);
+    seg(P['sh'+s],P['el'+s],6,5,PEAU);
+    seg(P['el'+s],P['wr'+s],5,4,PEAU);
+  });
+  seg(P.shg,P.shd,9,9,INK);
+  seg(P.hipg,P.hipd,8,8,INK);
+  seg(P.sh,P.pel,11,10,INK);
+  seg(P.sh,P.head,6,6,INK);
+  bal(P.head,L.tete,INK);
+
+  // barre + disques
+  seg(v(P.bar.x,P.bar.y,-34),v(P.bar.x,P.bar.y,34),2.6,2.6,METAL);
+  [-1,1].forEach(function(z){
+    seg(v(P.bar.x,P.bar.y,z*25),v(P.bar.x,P.bar.y,z*29),11,11,'#4b4f55');
+  });
+
+  items.sort(function(a,b){return a.d-b.d});
+  items.forEach(function(it){it.f()});
+
+  if(style==='anat'){ // reperes anatomiques
+    ctx.save();ctx.globalAlpha=.9;
+    ['g','d'].forEach(function(s){
+      var a=cam(P['hip'+s]), b=cam(P['kn'+s]);
+      var mx=(a.x*.62+b.x*.38), my=(a.y*.62+b.y*.38);
+      var r=9*a.s/2.4;
+      var gg=ctx.createRadialGradient(mx,my,1,mx,my,r*1.7);
+      gg.addColorStop(0,'rgba(216,35,47,.95)');gg.addColorStop(1,'rgba(216,35,47,0)');
+      ctx.fillStyle=gg;ctx.beginPath();ctx.arc(mx,my,r*1.7,0,6.2832);ctx.fill();
+    });
+    ctx.restore();
+    ctx.fillStyle='#8a3b3b';ctx.font='600 11px -apple-system,sans-serif';
+    var h=cam(P.hipd); ctx.fillText('grand fessier', h.x+14, h.y-6);
+  }
+}
+
+var S=[{y:-0.62,p:0.30,st:'ombre'},{y:-0.62,p:0.30,st:'plat'},{y:-0.62,p:0.30,st:'anat'}];
+var CV=[c1,c2,c3].map(function(id,i){return document.getElementById('c'+(i+1))});
+function reset(i){S[i].y=-0.62;S[i].p=0.30}
+CV.forEach(function(cv,i){
+  var drag=null;
+  function pos(e){var t=e.touches?e.touches[0]:e;return{x:t.clientX,y:t.clientY}}
+  cv.addEventListener('pointerdown',function(e){drag=pos(e);cv.setPointerCapture(e.pointerId)});
+  cv.addEventListener('pointermove',function(e){if(!drag)return;var p=pos(e);
+    S[i].y-=(p.x-drag.x)*0.011; S[i].p=Math.max(-0.25,Math.min(0.95,S[i].p+(p.y-drag.y)*0.006));
+    drag=p; e.preventDefault()});
+  ['pointerup','pointercancel','pointerleave'].forEach(function(ev){cv.addEventListener(ev,function(){drag=null})});
+});
+function boucle(){
+  var t=Date.now()%3400/3400, u=t<.5?t*2:2-t*2; u=u<.5?2*u*u:1-Math.pow(-2*u+2,2)/2;
+  CV.forEach(function(cv,i){
+    var r=window.devicePixelRatio||1, w=cv.clientWidth, h=cv.clientHeight;
+    if(cv.width!==w*r){cv.width=w*r;cv.height=h*r}
+    var ctx=cv.getContext('2d'); ctx.setTransform(r,0,0,r,0,0);
+    dessine3D(ctx,w,h,u,S[i].y,S[i].p,S[i].st);
+  });
+  requestAnimationFrame(boucle);
+}
+boucle();
+</script></body></html>
