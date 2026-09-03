@@ -145,9 +145,7 @@ function _old(svg,key,phase){
 var figs=[];
 function regFig(el,key){figs.push({el:el,k:key})}
 var t0=Date.now();
-function tick(){var ph=((Date.now()-t0)%2600)/2600;
-  for(var i=0;i<figs.length;i++) drawFig(figs[i].el,figs[i].k,ph);
-  requestAnimationFrame(tick)}
+function tick(){var tt=Date.now()-t0,ph=(tt%2600)/2600;for(var i=0;i<figs.length;i++) drawFig(figs[i].el,figs[i].k,ph);if(FT&&FT.el) FT.el.innerHTML=dessine(MVX[FT.k]||MVX.mob,(tt%4600)/4600,{});requestAnimationFrame(tick)}
 
 // ---------- minuteur
 var TM={id:null,left:0,tot:0};
