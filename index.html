@@ -247,6 +247,214 @@ PLAN.push(_s('callis',w,3,'11:00','Callisthénie : Pecs/Triceps & Biceps',D.i[2]
 PLAN.push(_s('salle',w,0,'11:00','Muscu salle : Dos & Épaules',D.i[0],D.gl,D.gla,0,'Salle de sport'));
 PLAN.push(_s('salle',w,3,'11:00','Muscu salle : Pecs/Triceps & Biceps',D.i[2],D.gj,D.gja,0,'Salle de sport'));
 }
+/* Historique : l'ancien programme reste affiché jusqu'au 01/11/2026 inclus */
+PLAN=PLAN.filter(function(s){return s.date<='2026-11-01'});
+/* Nouveau plan 10 km : semaine 1 = lundi 02/11/2026, dow 0 = lundi … 6 = dimanche */
+function _nd(w,dow){var t=new Date(2026,10,2);t.setDate(t.getDate()+(w-1)*7+dow);
+var p=function(n){return(n<10?'0':'')+n};return t.getFullYear()+'-'+p(t.getMonth()+1)+'-'+p(t.getDate())}
+var NC=[];
+var NM=[];
+/*NC-DEBUT*/
+(function(){
+var FAC="Allure facile : 5:00-5:25/km, plafond 4:50, jamais plus vite. Tu dois pouvoir parler en phrases entières.";
+function wu(fo){return{k:'wu',t:'Échauffement 15 min',d:'Z2, appuie sur LAP pour terminer'+(fo?'. Ensuite 4 foulées de 20 s à 3:20/km, récupération 40 s':'')}}
+function fo(){return{k:'work',t:'4 foulées de 20 s',d:'à 3:20/km',n:4,rec:'40 s'}}
+function cd(){return{k:'cd',t:'Retour au calme 8 min',d:'Z2, appuie sur LAP pour terminer'}}
+function R(n,m,a,rec){return{k:'work',t:n+' × '+m+' m',d:'à '+a+'/km',n:n,rec:rec}}
+function T(n,mn,a,rec){return{k:'work',t:n+' × '+mn+' min',d:'à '+a+'/km',n:n,rec:rec}}
+function ef(mn){return{k:'ef',t:mn+' min',d:'allure 5:00-5:25/km'}}
+function rap(w,dow,nom,blocs,intro,test){
+NC.push({w:w,dow:dow,h:'11:30',nom:nom,intro:intro,
+blocs:test?[wu(1)].concat(blocs,[cd()]):[wu(),fo()].concat(blocs,[cd()])})}
+function foot(w,dow,h,nom,mn,intro){NC.push({w:w,dow:dow,h:h,nom:nom,intro:intro,blocs:[ef(mn)]})}
+var IS="PRIORITAIRE. Seuil : effort soutenu mais maîtrisé, même allure sur chaque répétition. Récupération en trottinant très doucement.";
+var IA="PRIORITAIRE. Allure 10 km : régulier, c'est l'allure de ta course. Récupération en trottinant très doucement.";
+var IV="PRIORITAIRE. VO2max : répétitions rapides et régulières. Récupération en trottinant très doucement.";
+var ITT="PRIORITAIRE. Test 5 km chronométré, il remplace la séance rapide du mardi. Après le test, relève ton chrono et mets à jour tes allures avec la règle du tableau du plan (4 s/km maxi d'écart appliqués).";
+var MAR=[
+['Seuil 3x1600m',[R(3,1600,'3:52','90 s')],IS],
+['Seuil 3x1800m',[R(3,1800,'3:52','90 s')],IS],
+['Seuil 3x2000m',[R(3,2000,'3:52','2 min')],IS],
+['Test 5 km',[{k:'test',t:'5 km',d:'à 3:36/km, 1er km à 3:38 maxi'}],ITT+" Lundi : haut du corps seul. 1er km à 3:38 maxi, régulier, finis fort.",1],
+['Seuil 2x3000m',[R(2,3000,'3:52','150 s')],IS],
+['Seuil 25 min continu',[{k:'work',t:'25 min',d:'à 3:52/km, sans pause'}],IS],
+['Seuil 2x14 min',[T(2,14,'3:52','2 min')],IS],
+['Test 5 km',[{k:'test',t:'5 km',d:'à 3:34/km, 1er km à 3:32 maxi'}],ITT+" Jambes fraîches : le vendredi 25 est Noël. Vise l'allure 5 km du tableau, 1er km pas plus vite que 3:32.",1],
+['Allure 10 km 4x2000m',[R(4,2000,'3:44','2 min')],IA],
+['Allure 10 km 3x3000m',[R(3,3000,'3:44','150 s')],IA],
+['Allure 10 km 4x1000m',[R(4,1000,'3:44','90 s')],IA+" Rien de nouveau cette semaine."],
+['Allure 10 km 4x1000m',[R(4,1000,'3:44','90 s')],IA]];
+var VEN=[
+['VO2 5x800m',[R(5,800,'3:32','2 min')],IV],
+['VO2 6x800m',[R(6,800,'3:32','2 min')],IV],
+['VO2 5x1000m',[R(5,1000,'3:32','150 s')],IV],
+['Seuil 3x1200m',[R(3,1200,'3:52','90 s')],IS+" Dès ce vendredi, applique les allures du test de mardi (règle de mise à jour du plan)."],
+['VO2 4x1200m',[R(4,1200,'3:32','3 min')],IV],
+['VO2 3x1000m + vitesse 8x300m',[R(3,1000,'3:32','150 s'),R(8,300,'3:14','60 s')],IV+" Puis 8 × 300 m de vitesse à 3:14/km, vifs mais sans sprint."],
+['VO2 3x1600m',[R(3,1600,'3:34','3 min')],IV],
+['Seuil 3x1000m',[R(3,1000,'3:52','90 s')],IS+" Vendredi 25/12 : si Noël l'interdit, il faut sauter la séance, ne pas la décaler. Dès ce jour, applique les allures du test du 22/12."],
+['VO2 5x1000m',[R(5,1000,'3:32','150 s')],IV+" Vendredi 01/01 : si la nuit du 31 est tardive, décaler au samedi 2 sans le footing du samedi ; pas plus tard."],
+['VO2 4x1200m',[R(4,1200,'3:32','3 min')],IV],
+['VO2 3x1000m',[R(3,1000,'3:32','150 s')],IV],
+['Rappel 4x400m',[R(4,400,'3:32','90 s')],"PRIORITAIRE. Rappel court, 48 h avant la course : reste contrôlé, rien de plus."]];
+var MER=[25,30,30,25,35,40,40,30,35,40,25,25];
+var SAM=[15,15,20,15,25,25,25,20,25,25,0,0];
+var DIM=[50,50,55,45,60,65,70,50,60,65,40,0];
+var ACH="Douleur d'Achille ou de mollet au-dessus de 4/10 : la rapide devient un footing facile, sans côtes, foulées ni jambes lourdes ; si elle dure 3 jours, kiné ou médecin du sport avant de reprendre la vitesse.";
+for(var i=0;i<12;i++){
+var w=i+1,m=MAR[i],v=VEN[i];
+rap(w,1,m[0],m[1],m[2],m[3]);
+foot(w,2,'10:00','Footing '+MER[i]+' min',MER[i],'AU CHOIX. '+FAC+(w===1?' '+ACH:'')+(w>=2&&w<=6?' Facultatif : en fin de footing, 6 côtes de 8-10 s, effort vif sans sprint.':''));
+rap(w,4,v[0],v[1],v[2]);
+if(SAM[i])foot(w,5,'10:00','Footing '+SAM[i]+' min',SAM[i],'AU CHOIX, 1re à sacrifier. '+FAC);
+if(DIM[i])foot(w,6,'09:00','Sortie longue '+DIM[i]+' min',DIM[i],'PRIORITAIRE. Sortie longue facile. '+FAC)}
+NC.push({w:12,dow:5,h:'10:00',nom:'Veille 20 min + 4 foulées',
+intro:"AU CHOIX, conseillé. Footing facile de 20 min, puis 4 foulées de 20 s à 3:20/km. "+FAC,
+blocs:[ef(20),fo()]});
+NC.push({w:12,dow:6,h:'09:00',nom:'COURSE 10 km',
+intro:"Jour de course. Échauffement 15 min + 4 foulées avant. Allure 3:42-3:43/km, régulière sur les 8 premiers km, jamais plus vite sur les 3 premiers km.",
+blocs:[wu(1),{k:'test',t:'10 km',d:'à 3:42-3:43/km, régulier'}]})
+})();
+/*NC-FIN*/
+/*NM-DEBUT*/
+(function(){
+function x(a,n,s,f){return{a:a,n:n,s:s,f:f}}
+var T1="T1 : négatives 5 s → tractions complètes → tempo 3 s + pause 1 s → prise large ou étroite → archer → un bras assisté.";
+var R1="R1 : pieds au sol, jambes pliées → jambes tendues → pieds surélevés → pause 2 s → prise large → un bras → front lever row.";
+var R2="R2 : bras seuls, tempo 3-3 → pause 5 s → bras et jambe opposés → pompes scapulaires.";
+var P1="P1 : genoux → standard → pieds au mur 30° puis 60° → tempo 3-1-1 → mains sur barres → pseudo-planche → archer → un bras assisté.";
+var D1="D1 : négatives 4 s → dips complets → tempo 3-1 + pause 2 s → penché, jambes tendues → archer → un bras assisté.";
+var V1="V1 : piqué pieds au sol → pieds au mur → pause 2 s → négatives de verticale 5 s → verticale au mur → amplitude sur barres.";
+var S1="S1 : couché, 15-30 reps tempo 3-1-3 → pause 2 s → isométrie murale 30-45 s → planche latérale + bras libre → unilatéral 0-1 RIR.";
+var J1="J1 : squat tempo 4-1 → pause 2 s → fente arrière → bulgare 3 s → bulgare pause 2 s → pistol assisté → pistol. Palier : 5-8 reps au maximum.";
+var J2="J2 : pont ischios unilatéral → curl glissé 2 jambes puis 1 → Nordic négatif 5 s (pieds sous une barre basse) → Nordic complet.";
+var OB="OB : planche latérale genou → complète → jambe haute levée → Copenhagen genou → Copenhagen jambe tendue.";
+var M1="M1 : deux jambes → un jambe → tempo 3-1-3 + pause 2 s en bas → pogo (jamais la veille d'une rapide).";
+var M2="M2 : chaise murale talons levés deux jambes → un pied → tempo + pause 2 s en bas.";
+var AB="AB : planche dynamique → body saw → hollow rock → dragon flag négatif. Suspendu : genoux → jambes pliées → jambes tendues.";
+var AR="AR : planche + toucher d'épaule → bras et jambe opposés levés → planche sur un bras.";
+var G1="G1 : pont 2 jambes → pause 3 s → unilatéral → pieds surélevés → épaules surélevées → unilatéral pause + tempo.";
+var SHAKE=" Shake de protéines après la séance ; créatine 3-5 g tous les jours.";
+var PIED_SALLE="Double progression : quand les 3 séries atteignent le haut de la fourchette à 1-2 RIR deux séances de suite, monte la charge de 2-5 % puis reviens en bas de la fourchette. Jamais de montée de charge la semaine d'un test (S4 et S8)."+SHAKE;
+var PIED_CALLIS="Montée de variante : 3 × haut de la fourchette à 2 RIR deux séances de suite → passe au palier suivant de l'échelle, quitte à retomber à 4-6 répétitions."+SHAKE;
+var ENT_AC="Exercice 1, 30 s, exercice 2, puis repos 60-90 s";
+var ENT_B="Repos 2 min après B1 et B2, 1 min après B3, 90 s après B4";
+var ENT_D="Enchaîne les deux exercices, puis 1 min de repos";
+/* chaque paire : [exercice 1 salle, exercice 1 maison, exercice 2 salle, exercice 2 maison] */
+function pairesA(){return[
+[x('tirage_vert','Tirage vertical, prise large ou neutre (poulie)','3 × 6-10 · 1-2 RIR','Dos : tire les coudes vers les hanches, sans balancer le buste.'),
+ x('traction','Tractions [T1]','3 × 6-10 · 1-2 RIR',T1),
+ x('bench','Développé incliné haltères ou machine','3 × 8-12 · 1-2 RIR','Pectoraux : descends sous contrôle, coudes à 45°.'),
+ x('pompe_decline','Pompes pieds surélevés [P1]','3 × 8-12 · 1-2 RIR',P1)],
+[x('latraise','Élévation latérale poulie basse, bras devant le corps','3 × 12-20 · 0-1 RIR','Latéral : monte jusqu\'à l\'horizontale, descends en 2-3 s.'),
+ x('latraise','Latérale sans charge [S1]','3 × 15-30 · 0-1 RIR',S1),
+ x('row_horiz','Rowing buste soutenu, coudes à 45°','3 × 8-12 · 1-2 RIR','Dos : poitrine collée au support, serre les omoplates en fin de geste.'),
+ x('row','Rowing inversé [R1]','3 × 8-12 · 1-2 RIR',R1)],
+[x('row_horiz','Tirage horizontal à un bras ou tractions prise neutre','3 × 8-12 · 1-2 RIR','Dos : tire le coude vers la hanche, pause d\'une seconde en fin de geste.'),
+ x('tractionsup','Tractions prise neutre [T1]','3 × 8-12 · 1-2 RIR',T1),
+ x('latraise','Élévation latérale 2e variation : haltère penché 20°','3 × 15-25 · 0-1 RIR','Latéral : buste penché à 20°, coude légèrement fléchi, sans élan.'),
+ x('latraise','Latérale couché + isométrie murale [S1]','3 × 20-30 · 0-1 RIR',S1)],
+[x('plank','Roll-out (roue)','3 × 8-12 · 1-2 RIR','Abdos : dos plat, bassin verrouillé, ne cambre pas en allongeant.'),
+ x('plank','Body saw au sol [AB]','3 × 8-12 · 1-2 RIR',AB),
+ x('facepull','Face pull ou oiseau poulie','3 × 12-15 · 1-2 RIR','Deltoïde postérieur : tire vers le visage, coudes hauts, pause 1 s.'),
+ x('mob','Y-T-W [R2]','3 × 12-15 · 1-2 RIR',R2)]]}
+function pairesC(){return[
+[x('bench','Développé couché barre ou haltères','3 × 6-10 · 1-2 RIR','Pectoraux : omoplates serrées, descente 2-3 s, jamais au-delà de 0 RIR.'),
+ x('pompe','Pompes, palier haut [P1]','3 × 6-10 · 1-2 RIR',P1),
+ x('row_horiz','Tirage horizontal à un bras','3 × 8-12 · 1-2 RIR','Dos : tire le coude vers la hanche, pause d\'une seconde en fin de geste.'),
+ x('row','Rowing inversé un bras ou prise large [R1]','3 × 8-12 · 1-2 RIR',R1)],
+[x('ohp','Développé militaire haltères assis ou machine','3 × 6-10 · 1-2 RIR','Épaules : gaine le ventre, pousse sans cambrer, bras dans l\'axe des oreilles.'),
+ x('pike','Piqué puis verticale au mur [V1]','3 × 6-10 · 1-2 RIR',V1),
+ x('latraise','Élévation latérale poulie, un bras','3 × 12-20 · 0-1 RIR','Latéral : monte jusqu\'à l\'horizontale, descends en 2-3 s.'),
+ x('latraise','Latérale sans charge [S1]','3 × 15-30 · 0-1 RIR',S1)],
+[x('dips','Dips lestés ou aux barres','3 × 6-10 · 1-2 RIR','Pectoraux bas, triceps : penche-toi un peu, descends coudes à 45°.'),
+ x('dips','Dips aux barres [D1]','3 × 6-10 · 1-2 RIR',D1),
+ x('plank','Anti-rotation : Pallof poulie','3 × 10 par côté · 2 RIR','Abdos : résiste à la rotation, bras tendus, bassin immobile.'),
+ x('plank','Planche + toucher d\'épaule [AR]','3 × 10 par côté · 2 RIR',AR)],
+[x('latraise','Élévation latérale assis haltères, ou machine','3 × 15-25 · 0-1 RIR','Latéral : longueur différente de la poulie, haltères assis sans élan.'),
+ x('latraise','Latérale couché + isométrie murale [S1]','3 × 20-30 · 0-1 RIR',S1),
+ x('mob','Mobilité thoracique + chevilles','3 × 45 s','Mobilité : ouvre le haut du dos, amplitude lente, sans douleur.'),
+ x('mob','Mobilité thoracique + chevilles','3 × 45 s','Mobilité : ouvre le haut du dos, amplitude lente, sans douleur.')]]}
+function choisir(l,m){return l.map(function(p){return m?[p[1],p[3]]:[p[0],p[2]]})}
+function pairesB(){return[
+[x('bulgare','Bulgare au palier difficile (bulgare pause 2 s, puis pistol assisté) [J1]','3 × 5-8 par jambe · 2-3 RIR',J1),
+ x('pont','Nordic curl, palier négatif 5 s puis complet [J2]','3 × 4-8 · 2-3 RIR',J2)],
+[x('copenhagen','Copenhagen (pied haut sur barre basse) [OB]','3 × 8-12 s par côté · 2-3 RIR',OB),
+ x('mob','Mollets un pied, orteils sur marche, tempo 3-1-3 [M1]','3 × 6-8 · 2-3 RIR',M1)]]}
+function pairesD(){return[
+[x('pont','Pont fessier, unilatéral ou pieds surélevés [G1]','3 × 10-15 · 3 RIR',G1),
+ x('sideplank','Planche latérale, jambe haute levée [OB]','3 × 30-45 s par côté · 2-3 RIR',OB)],
+[x('legraise','Relevé de jambes suspendu ou body saw [AB]','3 × 8-12 · 1-2 RIR',AB),
+ x('mob','Mollets debout deux jambes [M1]','3 × 12-15 · 3 RIR',M1)]]}
+var ECH="Échauffement 5-8 min : mobilité, 1 série de pompes plus, séries d'approche dans le tour 1.";
+function introA(){return"Objectif : haut du corps lourd, accent dos, séries à 0-2 RIR, aucune jambe. "+ECH+" Lundi est la veille d'une rapide : pas d'exercice nouveau, jamais au-delà de 0 RIR (pas de répétitions forcées)."}
+function introC(){return"Objectif : haut du corps lourd, accent poussée, séries à 0-2 RIR, aucune jambe. Échauffement 5-8 min : mobilité, 1 série de pompes plus, 2 × 12 rotation externe couché sur le côté, séries d'approche dans le tour 1. Jeudi est la veille d'une rapide : pas d'exercice nouveau, jamais au-delà de 0 RIR (pas de répétitions forcées)."}
+function introB(w,t){return"Objectif : jambes lourdes en calisthénie, peu de répétitions, sans échec (RIR 2-3) ; échauffement 5-8 min de mobilité. Fais-la APRÈS le footing du mercredi ou au moins 6 h plus tard, jamais avant. Si courbatures aux jambes, retire 1 série."+
+(t===2?(" "+(w<=2?"Semaines 1-2 : 2 tours, car le Nordic et le Copenhagen sont nouveaux et tu ne dois pas arriver courbaturé à la rapide du vendredi.":"Semaine de test : 2 tours, car la séance tombe 24 h après un 5 km à fond.")):"")}
+function introD(){return"Objectif : calisthénie légère (fessiers, obliques, abdos, mollets), RIR 3 sauf les abdos ; échauffement 5-8 min de mobilité. Dimanche APRÈS la longue, ou samedi si les jambes sont fraîches, jamais avant la longue. Douleur d'Achille ou mollet qui tire : saute les mollets."}
+for(var w=1;w<=10;w++){
+NM.push({w:w,dow:0,h:'11:00',prog:'salle',nom:'A — Haut du corps lourd, accent dos',intro:introA(),lieu:'Salle de sport',tours:3,ss:choisir(pairesA(),0),acc:[],mob:[],ent:ENT_AC,pied:PIED_SALLE});
+NM.push({w:w,dow:0,h:'11:00',prog:'callis',nom:'A — Haut du corps lourd, accent dos',intro:introA(),lieu:'Maison ou terrain : sol, mur, barre de traction, barres de dips',tours:3,ss:choisir(pairesA(),1),acc:[],mob:[],ent:ENT_AC,pied:PIED_CALLIS});
+var tb=(w===1||w===2||w===4||w===8)?2:3;
+NM.push({w:w,dow:2,h:'11:00',prog:'callis',nom:'B — Jambes lourdes (calisthénie)',intro:introB(w,tb),lieu:'Maison ou terrain : sol, mur, barre de traction, barres de dips',tours:tb,ss:pairesB(),acc:[],mob:[],ent:ENT_B,pied:PIED_CALLIS});
+NM.push({w:w,dow:3,h:'11:00',prog:'salle',nom:'C — Haut du corps lourd, accent poussée',intro:introC(),lieu:'Salle de sport',tours:3,ss:choisir(pairesC(),0),acc:[],mob:[],ent:ENT_AC,pied:PIED_SALLE});
+NM.push({w:w,dow:3,h:'11:00',prog:'callis',nom:'C — Haut du corps lourd, accent poussée',intro:introC(),lieu:'Maison ou terrain : sol, mur, barre de traction, barres de dips',tours:3,ss:choisir(pairesC(),1),acc:[],mob:[],ent:ENT_AC,pied:PIED_CALLIS});
+var d=pairesD();
+NM.push({w:w,dow:6,h:'10:45',prog:'callis',nom:'D — Calisthénie légère (après la longue)',intro:introD(),lieu:'Maison : sol, mur, barre de traction',tours:3,ss:d,acc:[x('mob','Chaise murale talons levés [M2]','3 × 12-15 · 3 RIR',M2)],mob:[],ent:ENT_D,pied:PIED_CALLIS})}
+/* Affûtage S11-S12 : mêmes gabarits, 2 séries par exercice, heures de début propres à chaque séance */
+var AFF=" En S11 et S12 : jamais de nouveauté, jamais de montée de charge.";
+var LIEU_C='Maison ou terrain : sol, mur, barre de traction, barres de dips';
+function reduire(paires,rir){return paires.map(function(p){return p.map(function(e){
+return x(e.a,e.n,e.s.replace(/^3 ×/,'2 ×').replace(/\d(?:-\d)? RIR$/,rir+' RIR'),e.f)})})}
+function affAC(w,dow,prog,nom,intro,rir,paires){
+var salle=prog==='salle';
+NM.push({w:w,dow:dow,h:'11:00',prog:prog,nom:nom,intro:intro,lieu:salle?'Salle de sport':LIEU_C,tours:2,
+ss:reduire(choisir(paires,salle?0:1),rir),acc:[],mob:[],ent:ENT_AC,pied:(salle?PIED_SALLE:PIED_CALLIS)+AFF})}
+var NA="A — Haut du corps lourd, accent dos",NC_="C — Haut du corps lourd, accent poussée";
+var I11="Affûtage : rien de nouveau. 2 tours (2 séries par exercice), mêmes charges, RIR 2-3. "+ECH;
+var I12="Semaine de la course : rien de nouveau. 2 tours (2 séries par exercice), mêmes charges, RIR 3. "+ECH;
+['salle','callis'].forEach(function(p){
+affAC(11,0,p,NA,I11,'2-3',pairesA());
+affAC(11,3,p,NC_,I11,'2-3',pairesC());
+affAC(12,0,p,NA,I12,'3',pairesA());
+affAC(12,3,p,NC_,I12+" Jeudi 21/01 : 3 jours avant la course, séance courte de 30 min.",'3',pairesC())});
+NM.push({w:11,dow:2,h:'11:00',prog:'callis',nom:'B — Jambes lourdes (calisthénie)',
+intro:"Affûtage : DERNIÈRE séance de jambes lourdes avant la course, rien de nouveau. 2 tours, RIR 3, échauffement 5-8 min de mobilité. Fais-la APRÈS le footing du mercredi ou au moins 6 h plus tard. Plus aucune jambe lourde après cette séance.",
+lieu:LIEU_C,tours:2,
+ss:[[x('bulgare','Bulgare au palier difficile (bulgare pause 2 s, puis pistol assisté) [J1]','2 × 5 par jambe · 3 RIR',J1),
+ x('pont','Nordic curl, palier négatif 5 s puis complet [J2]','2 × 3-4 · 3 RIR',J2)],
+[x('copenhagen','Copenhagen (pied haut sur barre basse) [OB]','2 × 8 s par côté · 3 RIR',OB),
+ x('mob','Mollets un pied, orteils sur marche, tempo 3-1-3 [M1]','2 × 6 · 3 RIR',M1)]],
+acc:[],mob:[],ent:ENT_B,pied:PIED_CALLIS+AFF});
+NM.push({w:11,dow:6,h:'10:45',prog:'callis',nom:'D — Calisthénie légère minimale',
+intro:"Affûtage : version minimale, rien de nouveau (fessiers, gainage, abdos), plus de mollets. RIR 3-4 ; échauffement 5-8 min de mobilité. Dimanche APRÈS la longue.",
+lieu:'Maison : sol, mur, barre de traction',tours:2,
+ss:[[x('pont','Pont fessier, unilatéral ou pieds surélevés [G1]','2 × 12 · 4 RIR',G1),
+ x('sideplank','Planche latérale, jambe haute levée [OB]','2 × 30 s par côté · 3 RIR',OB)]],
+acc:[x('legraise','Relevé de jambes suspendu ou body saw [AB]','2 × 8-12 · 2 RIR',AB)],mob:[],ent:ENT_D,pied:PIED_CALLIS+AFF});
+var pa=pairesA(),pc=pairesC();
+NM.push({w:12,dow:2,h:'11:00',prog:'callis',nom:'B — Haut du corps léger et gainage (sans jambes)',
+intro:"Affûtage : AUCUNE jambe lourde cette semaine. Haut du corps léger et gainage, 25 min, 2 tours, RIR 3, rien de nouveau ; échauffement 5 min de mobilité.",
+lieu:LIEU_C,tours:2,
+ss:reduire([[pa[0][1],pa[0][3]],[pa[1][3],pc[2][3]]],'3'),
+acc:[x('sideplank','Planche latérale, jambe haute levée [OB]','2 × 30 s par côté · 3 RIR',OB)],mob:[],ent:ENT_AC,pied:PIED_CALLIS+AFF});
+NM.push({w:12,dow:5,h:'11:00',prog:'callis',nom:'D — Mobilité seule (veille de course)',
+intro:"Veille de course : pas de muscu, rien de lourd. 15 min de mobilité douce, en commençant par 1 série de pompes plus. Rien de nouveau.",
+lieu:'Maison : sol, mur',tours:0,ss:[],acc:[],
+mob:[x('pompe','1 série de pompes plus','1 série',P1),
+ x('mob','90/90 hanches','2 × 60 s par côté','Assis, jambes à 90°, bascule d\'un côté à l\'autre sans forcer.'),
+ x('mob','Pigeon','2 × 45 s par côté','Ouvre la hanche avant, respire dans la position.'),
+ x('mob','Squat profond tenu','3 × 45 s','Talons au sol, coudes qui poussent les genoux vers l\'extérieur.')],
+pied:"Aucune progression : veille de course, jamais de nouveauté, jamais de montée de charge."})
+})();
+/*NM-FIN*/
+NC.forEach(function(c){
+PLAN.push({date:_nd(c.w,c.dow),h:c.h,prog:'course',sem:c.w,v:2,nom:c.nom,intro:c.intro,blocs:c.blocs})});
+NM.forEach(function(m){
+var o={date:_nd(m.w,m.dow),h:m.h,prog:m.prog,sem:m.w,v:2,lieu:m.lieu,nom:m.nom,intro:m.intro,tours:m.tours,ss:m.ss,acc:m.acc,mob:m.mob};
+if(m.ent!==undefined)o.ent=m.ent;
+if(m.pied!==undefined)o.pied=m.pied;
+PLAN.push(o)});
 PLAN.sort(function(a,b){return a.date<b.date?-1:a.date>b.date?1:(a.h<b.h?-1:1)});
 var FT=null;
 var LS={get:function(k,d){try{var v=localStorage.getItem('coach_'+k);return v?JSON.parse(v):d}catch(e){return d}},
@@ -342,7 +550,7 @@ function render(){
  if(!ss.length){app.innerHTML='<div class="empty">Repos.<br><small>Rien de prévu ce jour-là.</small></div>';figs=[];return}
  if(sel>=ss.length)sel=0;
  var s=ss[sel], c=PROGC[s.prog];
- h+='<h1>'+esc(s.nom)+'<span class="badge">S'+s.sem+'</span></h1>';
+ h+='<h1>'+esc(s.nom)+'<span class="badge">'+(s.v===2?'S'+s.sem:'ancien S'+s.sem)+'</span></h1>';
  h+='<div class="meta">'+s.h+(s.lieu?' · '+esc(s.lieu):'')+'</div>';
  h+='<div class="intro '+c+'">'+esc(s.intro)+'</div>';
  if(s.prog==='course'){
@@ -353,16 +561,16 @@ function render(){
    h+='</div><div class="foot">Sur la montre : la séance est déjà chargée. L\'échauffement et le retour au calme attendent que <b>tu</b> appuies sur LAP ; entre les répétitions, tout s\'enchaîne tout seul.</div>';
  } else {
    var key='chk_'+s.date+'_'+s.prog, done=LS.get(key,{});
-   s.ss.forEach(function(pair,pi){
+   (s.tours>0?s.ss:[]).forEach(function(pair,pi){
      h+='<h2>Superset '+(pi+1)+' — '+s.tours+' tours</h2><div class="card '+c+'">';
-     h+='<div class="head"><span>Enchaîne A puis B sans repos, puis 90 s</span><span class="rounds">';
+     h+='<div class="head"><span>'+(s.ent!==undefined?esc(s.ent):'Enchaîne A puis B sans repos, puis 90 s')+'</span><span class="rounds">';
      for(var r=0;r<s.tours;r++){var id=pi+'-'+r;
        h+='<button class="rd'+(done[id]?' done':'')+'" onclick="tog(\''+key+'\',\''+id+'\')">'+(r+1)+'</button>'}
      h+='</span></div>';
      pair.forEach(function(e,ei){h+='<div class="pair">'+exoHTML(e,c)+'</div>'});
      h+='</div>';
    });
-   h+='<h2>Finition</h2>';
+   if(s.acc.length)h+='<h2>Finition</h2>';
    s.acc.forEach(function(e,i){
      var lk='log_'+s.prog+'_'+e.n, prev=LS.get(lk,'');
      h+='<div class="card '+c+'">'+exoHTML(e,c)+
@@ -371,13 +579,20 @@ function render(){
         (prev?'<span class="prev">dernière fois : '+esc(prev)+'</span>':'')+'</div></div>'});
    if(s.mob&&s.mob.length){h+='<h2>Mobilité — 15 min</h2>';
      s.mob.forEach(function(e){h+='<div class="card '+c+'">'+exoHTML(e,c)+'</div>'})}
-   h+='<div class="foot"><b>100 % poids du corps</b> pour la callisthénie : la progression vient du bras de levier, du travail unilatéral et du tempo, jamais de la charge. Shake de protéines après la séance ; créatine 3-5 g tous les jours.</div>';
+   h+=s.pied!==undefined?'<div class="foot">'+esc(s.pied)+'</div>':'<div class="foot"><b>100 % poids du corps</b> pour la callisthénie : la progression vient du bras de levier, du travail unilatéral et du tempo, jamais de la charge. Shake de protéines après la séance ; créatine 3-5 g tous les jours.</div>';
  }
  // semaines
  h+='<h2>Aller à une semaine</h2><div class="weeks">';
- for(var w=1;w<=12;w++){var f=PLAN.filter(function(x){return x.sem===w})[0];
-   h+='<button class="wk'+(f&&s.sem===w?' on':'')+'" onclick="goDate(\''+f.date+'\')">S'+w+
-      '<small>'+parse(f.date).getDate()+'/'+(parse(f.date).getMonth()+1)+'</small></button>'}
+ if(s.v===2){
+   for(var w=1;w<=12;w++){var nd=_nd(w,0), pd=parse(nd);
+     h+='<button class="wk'+(s.sem===w?' on':'')+'" onclick="goDate(\''+nd+'\')">S'+w+
+        '<small>'+pd.getDate()+'/'+(pd.getMonth()+1)+'</small></button>'}
+ } else {
+   for(var w=1;w<=12;w++){var f=PLAN.filter(function(x){return x.v!==2&&x.sem===w})[0];
+     if(!f)continue;
+     h+='<button class="wk'+(s.sem===w?' on':'')+'" onclick="goDate(\''+f.date+'\')">S'+w+
+        '<small>'+parse(f.date).getDate()+'/'+(parse(f.date).getMonth()+1)+'</small></button>'}
+ }
  h+='</div>';
  app.innerHTML=h;
  figs=[];
