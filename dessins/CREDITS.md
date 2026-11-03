@@ -6,6 +6,8 @@ Chaque dessin affiché dans Coach porte son crédit sous le dessin. Tout nouveau
 
 Dessins d'Everkinetic, licence [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/), modifiés par recadrage et passage au trait.
 
+**Partage dans les mêmes conditions** : les dessins dérivés d'Everkinetic (recadrés, passés au trait, recalés, animés ou redessinés d'après ces dessins) restent sous la licence [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) ; qui les réutilise doit citer Everkinetic, indiquer les modifications et les diffuser sous la même licence.
+
 | Dessin (slug) | Fichier source (Wikimedia Commons) |
 |---|---|
 | tirage_vertical | [Wide_grip_lat_pull_down_1](https://commons.wikimedia.org/wiki/File:Wide_grip_lat_pull_down_1.svg) |

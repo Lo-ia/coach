@@ -44,6 +44,6 @@ var DESSINS={
 "Chaise murale talons levés [M2]":{img:"chaise_murale.png",faux:true,credit:{t:"Dessin généré par IA (OpenAI), sans photo modèle"}},
 "90/90 hanches":{img:"hanches_9090.png",faux:true,credit:{t:"Dessin généré par IA (OpenAI), sans photo modèle"}},
 "Pigeon":{img:"pigeon.png",faux:true,credit:{t:"Dessin généré par IA (OpenAI), sans photo modèle"}},
-"1 série de pompes plus":{img:"pompes_plus_debut.png",fin:"pompes_plus_fin.png",credit:{t:"Dessin généré par IA (OpenAI), sans photo modèle"}},
+"1 série de pompes plus":{img:"pompes_plus_debut.png",fin:"pompes_plus_fin.png",faux:true,credit:{t:"Dessin généré par IA (OpenAI), sans photo modèle"}},
 "Squat profond tenu":{img:"squat_profond.png",credit:{t:"Dessin généré par IA (OpenAI), sans photo modèle"}}
 };

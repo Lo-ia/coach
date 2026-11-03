@@ -275,11 +275,11 @@ var MAR=[
 ['Seuil 3x1600m',[R(3,1600,'3:52','90 s')],IS],
 ['Seuil 3x1800m',[R(3,1800,'3:52','90 s')],IS],
 ['Seuil 3x2000m',[R(3,2000,'3:52','2 min')],IS],
-['Test 5 km',[{k:'test',t:'5 km',d:'à 3:36/km, 1er km à 3:38 maxi'}],ITT+" Lundi : haut du corps seul. 1er km à 3:38 maxi, régulier, finis fort.",1],
+['Test 5 km',[{k:'test',t:'5 km',d:'à 3:36/km, 1er km pas plus vite que 3:38'}],ITT+" Lundi : haut du corps seul. 1er km pas plus vite que 3:38/km, régulier, finis fort.",1],
 ['Seuil 2x3000m',[R(2,3000,'3:52','150 s')],IS],
 ['Seuil 25 min continu',[{k:'work',t:'25 min',d:'à 3:52/km, sans pause'}],IS],
 ['Seuil 2x14 min',[T(2,14,'3:52','2 min')],IS],
-['Test 5 km',[{k:'test',t:'5 km',d:'à 3:34/km, 1er km à 3:32 maxi'}],ITT+" Jambes fraîches : le vendredi 25 est Noël. Vise l'allure 5 km du tableau, 1er km pas plus vite que 3:32.",1],
+['Test 5 km',[{k:'test',t:'5 km',d:'à 3:34/km, 1er km pas plus vite que 3:32'}],ITT+" Jambes fraîches : le vendredi 25 est Noël. Vise l'allure 5 km du tableau, 1er km pas plus vite que 3:32.",1],
 ['Allure 10 km 4x2000m',[R(4,2000,'3:44','2 min')],IA],
 ['Allure 10 km 3x3000m',[R(3,3000,'3:44','150 s')],IA],
 ['Allure 10 km 4x1000m',[R(4,1000,'3:44','90 s')],IA+" Rien de nouveau cette semaine."],
@@ -396,7 +396,7 @@ for(var w=1;w<=10;w++){
 NM.push({w:w,dow:0,h:'11:00',prog:'salle',nom:'A — Haut du corps lourd, accent dos',intro:introA(),lieu:'Salle de sport',tours:3,ss:choisir(pairesA(),0),acc:[],mob:[],ent:ENT_AC,pied:PIED_SALLE});
 NM.push({w:w,dow:0,h:'11:00',prog:'callis',nom:'A — Haut du corps lourd, accent dos',intro:introA(),lieu:'Maison ou terrain : sol, mur, barre de traction, barres de dips',tours:3,ss:choisir(pairesA(),1),acc:[],mob:[],ent:ENT_AC,pied:PIED_CALLIS});
 var tb=(w===1||w===2||w===4||w===8)?2:3;
-NM.push({w:w,dow:2,h:'11:00',prog:'callis',nom:'B — Jambes lourdes (calisthénie)',intro:introB(w,tb),lieu:'Maison ou terrain : sol, mur, barre de traction, barres de dips',tours:tb,ss:pairesB(),acc:[],mob:[],ent:ENT_B,pied:PIED_CALLIS});
+NM.push({w:w,dow:2,h:'11:00',prog:'callis',nom:'B — Jambes lourdes (calisthénie)',intro:introB(w,tb),lieu:'Maison ou terrain : sol, mur, barre de traction, barres de dips',tours:tb,ss:tb===2?reduire(pairesB(),w<=2?'3':'2-3'):pairesB(),acc:[],mob:[],ent:ENT_B,pied:PIED_CALLIS});
 NM.push({w:w,dow:3,h:'11:00',prog:'salle',nom:'C — Haut du corps lourd, accent poussée',intro:introC(),lieu:'Salle de sport',tours:3,ss:choisir(pairesC(),0),acc:[],mob:[],ent:ENT_AC,pied:PIED_SALLE});
 NM.push({w:w,dow:3,h:'11:00',prog:'callis',nom:'C — Haut du corps lourd, accent poussée',intro:introC(),lieu:'Maison ou terrain : sol, mur, barre de traction, barres de dips',tours:3,ss:choisir(pairesC(),1),acc:[],mob:[],ent:ENT_AC,pied:PIED_CALLIS});
 var d=pairesD();
