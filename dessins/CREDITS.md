@@ -36,7 +36,7 @@ Trois dessins générés par IA (ChatGPT) d'après des photos Pexels. Licence Pe
 
 ## Dessins générés par IA (OpenAI), sans photo modèle
 
-22 dessins générés par IA (OpenAI), sans photo modèle : pas d'auteur ni de licence externe.
+23 dessins générés par IA (OpenAI), sans photo modèle : pas d'auteur ni de licence externe.
 
-- Paires animées (17) : nordic, body_saw, pallof, toucher_epaule, pont_unilateral, ytw, laterale_poulie_deux_bras, laterale_poulie_un_bras, laterale_assis, laterale_penche, laterale_couche, rowing_buste_soutenu, tirage_un_bras, mollet_un_pied, mollets_deux_jambes, rotation_thoracique, pompes_plus.
+- Paires animées (18) : nordic, body_saw, pallof, toucher_epaule, pont_unilateral, ytw, laterale_poulie_deux_bras, laterale_poulie_un_bras, laterale_assis, laterale_penche, laterale_couche, rowing_buste_soutenu, tirage_un_bras, mollet_un_pied, mollets_deux_jambes, rotation_thoracique, pompes_plus, laterale_sans_charge.
 - Dessins fixes (5) : copenhagen, chaise_murale, hanches_9090, pigeon, squat_profond.
